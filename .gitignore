@@ -1,0 +1,299 @@
+# ============================================================
+# StressIntel PRO — Git Ignore Rules
+# ============================================================
+
+# ------------------------------------------------------------
+# Environment & Secrets
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+*.key
+*.pem
+*.crt
+secrets/
+credentials/
+
+
+# ------------------------------------------------------------
+# Python
+# ------------------------------------------------------------
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+*.so
+*.dll
+
+.Python
+
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+
+*.egg-info/
+.installed.cfg
+*.egg
+
+pip-wheel-metadata/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+.tox/
+.nox/
+
+.pyre/
+.pytype/
+
+.pyright/
+
+.ipynb_checkpoints/
+
+
+# ------------------------------------------------------------
+# Virtual Environments
+# ------------------------------------------------------------
+
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+
+# ------------------------------------------------------------
+# IDEs / Editors
+# ------------------------------------------------------------
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*~
+
+
+# ------------------------------------------------------------
+# Operating System
+# ------------------------------------------------------------
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+
+# ------------------------------------------------------------
+# Logs
+# ------------------------------------------------------------
+
+logs/
+*.log
+
+
+# ------------------------------------------------------------
+# Local Databases
+# ------------------------------------------------------------
+
+*.db
+*.sqlite
+*.sqlite3
+
+instance/
+
+
+# ------------------------------------------------------------
+# Temporary Files
+# ------------------------------------------------------------
+
+tmp/
+temp/
+*.tmp
+*.temp
+
+*.cache
+
+
+# ------------------------------------------------------------
+# Research Data
+# ------------------------------------------------------------
+
+# Never commit private or identifiable research datasets.
+data/private/
+data/raw/
+data/processed/
+data/participant/
+data/sensitive/
+
+*.parquet
+*.feather
+
+# Explicitly allow the synthetic development dataset.
+!data/sample/
+!data/sample/sample_assessments.csv
+
+
+# ------------------------------------------------------------
+# Research Outputs
+# ------------------------------------------------------------
+
+# Ignore generated experiment artifacts unless explicitly
+# committed for reproducibility.
+research/metrics/*.json
+research/metrics/*.csv
+research/reports/*.json
+research/reports/*.html
+research/reports/*.pdf
+
+# Preserve repository placeholders.
+!research/metrics/.gitkeep
+!research/reports/.gitkeep
+
+
+# ------------------------------------------------------------
+# Machine Learning Artifacts
+# ------------------------------------------------------------
+
+# Model artifacts may be generated locally and should only be
+# committed after deliberate research/reproducibility review.
+
+models/*.json
+models/*.joblib
+models/*.pkl
+models/*.pickle
+models/*.onnx
+models/*.bin
+
+# Preserve model directory documentation.
+!models/README.md
+!models/.gitkeep
+
+
+# ------------------------------------------------------------
+# Uploaded / Generated Media
+# ------------------------------------------------------------
+
+uploads/
+media/
+generated/
+screenshots/
+
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.mov
+*.avi
+
+# Preserve application assets.
+!static/assets/
+!static/assets/*.svg
+
+
+# ------------------------------------------------------------
+# Jupyter / Research Notebooks
+# ------------------------------------------------------------
+
+*.ipynb
+*.ipynb_checkpoints/
+
+
+# ------------------------------------------------------------
+# Node / Frontend Tooling
+# ------------------------------------------------------------
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.npm/
+.yarn/
+.pnpm-store/
+
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+
+# ------------------------------------------------------------
+# Vercel
+# ------------------------------------------------------------
+
+.vercel/
+
+
+# ------------------------------------------------------------
+# Coverage / Test Reports
+# ------------------------------------------------------------
+
+coverage/
+htmlcov/
+.pytest_cache/
+
+test-results/
+playwright-report/
+blob-report/
+
+
+# ------------------------------------------------------------
+# OS / Archive Files
+# ------------------------------------------------------------
+
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+
+# ------------------------------------------------------------
+# Local Development Configuration
+# ------------------------------------------------------------
+
+config/local_settings.py
+config/settings.local.py
+
+
+# ------------------------------------------------------------
+# Security / Credentials
+# ------------------------------------------------------------
+
+*.secret
+*.token
+*.credentials
+
+service-account*.json
+firebase-adminsdk*.json
+
+
+# ------------------------------------------------------------
+# Generated Documentation
+# ------------------------------------------------------------
+
+docs/generated/
+docs/_build/
+
+
+# ------------------------------------------------------------
+# Miscellaneous
+# ------------------------------------------------------------
+
+*.orig
+*.rej
+*.pid
+*.seed

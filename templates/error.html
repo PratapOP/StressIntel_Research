@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO — Research-oriented stress analysis platform."
+    >
+
+    <title>
+        {% if error_code == 404 %}
+            Page Not Found — StressIntel PRO
+        {% elif error_code == 500 %}
+            Server Error — StressIntel PRO
+        {% else %}
+            Error — StressIntel PRO
+        {% endif %}
+    </title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ url_for('static', filename='assets/favicon.svg') }}"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+</head>
+
+<body class="error-page">
+
+    <div class="error-background">
+
+        <div class="error-grid"></div>
+
+        <div class="error-glow error-glow-one"></div>
+        <div class="error-glow error-glow-two"></div>
+
+    </div>
+
+    <main class="error-container">
+
+        <!-- =====================================================
+             BRAND
+        ====================================================== -->
+
+        <header class="error-header">
+
+            <a
+                href="/"
+                class="brand-link"
+                aria-label="StressIntel PRO home"
+            >
+
+                <span class="brand-mark">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+
+                <span class="brand-copy">
+                    <strong>StressIntel</strong>
+                    <small>PRO</small>
+                </span>
+
+            </a>
+
+            <span class="error-system-status">
+                <span class="status-dot"></span>
+                Research platform
+            </span>
+
+        </header>
+
+        <!-- =====================================================
+             ERROR CONTENT
+        ====================================================== -->
+
+        <section class="error-content">
+
+            <div class="error-code">
+
+                {% if error_code %}
+                    {{ error_code }}
+                {% else %}
+                    500
+                {% endif %}
+
+            </div>
+
+            <div class="error-line"></div>
+
+            {% if error_code == 404 %}
+
+                <span class="section-kicker">
+                    REQUEST NOT FOUND
+                </span>
+
+                <h1>
+                    This route does not exist.
+                </h1>
+
+                <p>
+                    The resource you requested could not be located.
+                    It may have moved, been removed, or the URL may be incorrect.
+                </p>
+
+            {% elif error_code == 500 %}
+
+                <span class="section-kicker">
+                    INTERNAL PROCESSING ERROR
+                </span>
+
+                <h1>
+                    Something went wrong.
+                </h1>
+
+                <p>
+                    StressIntel PRO encountered an unexpected server-side error.
+                    No research result should be inferred from an unsuccessful request.
+                </p>
+
+            {% else %}
+
+                <span class="section-kicker">
+                    REQUEST ERROR
+                </span>
+
+                <h1>
+                    The request could not be completed.
+                </h1>
+
+                <p>
+                    An unexpected condition prevented the requested resource
+                    from being displayed.
+                </p>
+
+            {% endif %}
+
+            <!-- =================================================
+                 ACTIONS
+            ================================================== -->
+
+            <div class="error-actions">
+
+                <a
+                    href="/"
+                    class="primary-button"
+                >
+                    Return to platform
+                    <span>→</span>
+                </a>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="window.history.back()"
+                >
+                    ← Go back
+                </button>
+
+            </div>
+
+            <!-- =================================================
+                 DIAGNOSTIC PANEL
+            ================================================== -->
+
+            <div class="error-diagnostic">
+
+                <div class="diagnostic-header">
+
+                    <div>
+                        <span class="section-kicker">
+                            SYSTEM RESPONSE
+                        </span>
+
+                        <h2>Request diagnostic</h2>
+                    </div>
+
+                    <span class="diagnostic-status">
+                        {% if error_code == 404 %}
+                            NOT FOUND
+                        {% elif error_code == 500 %}
+                            SERVER ERROR
+                        {% else %}
+                            ERROR
+                        {% endif %}
+                    </span>
+
+                </div>
+
+                <div class="diagnostic-grid">
+
+                    <div class="diagnostic-item">
+
+                        <span>Status code</span>
+
+                        <strong>
+                            {% if error_code %}
+                                {{ error_code }}
+                            {% else %}
+                                500
+                            {% endif %}
+                        </strong>
+
+                    </div>
+
+                    <div class="diagnostic-item">
+
+                        <span>Application</span>
+
+                        <strong>StressIntel PRO</strong>
+
+                    </div>
+
+                    <div class="diagnostic-item">
+
+                        <span>Environment</span>
+
+                        <strong>
+                            {{ config.ENVIRONMENT if config is defined else "runtime" }}
+                        </strong>
+
+                    </div>
+
+                    <div class="diagnostic-item">
+
+                        <span>Research state</span>
+
+                        <strong>Unaffected</strong>
+
+                    </div>
+
+                </div>
+
+                <div class="diagnostic-note">
+
+                    <span class="notice-symbol">i</span>
+
+                    <p>
+                        Error responses are isolated from assessment outputs.
+                        Do not interpret an incomplete or failed request as a
+                        model prediction.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="error-footer">
+
+            <div>
+                <strong>StressIntel PRO</strong>
+                <span>Research Platform v1.0.0</span>
+            </div>
+
+            <div>
+                <span>21 structured signals</span>
+                <span>•</span>
+                <span>XGBoost</span>
+                <span>•</span>
+                <span>SHAP</span>
+            </div>
+
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="StressIntel PRO — Deployable Research Platform for Student Stress Analysis"
+    >
+
+    <meta
+        name="theme-color"
+        content="#08090d"
+    >
+
+    <title>StressIntel PRO | Student Stress Research</title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ url_for('static', filename='assets/favicon.svg') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- ======================================================
+         Application Shell
+    ======================================================= -->
+
+    <div class="app-shell">
+
+        <!-- ==================================================
+             Navigation
+        =================================================== -->
+
+        <header class="site-header">
+
+            <div class="header-inner">
+
+                <a
+                    href="/"
+                    class="brand"
+                    aria-label="StressIntel PRO home"
+                >
+                    <span class="brand-mark">
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                    </span>
+
+                    <span class="brand-copy">
+                        <span class="brand-name">
+                            StressIntel
+                        </span>
+
+                        <span class="brand-version">
+                            PRO
+                        </span>
+                    </span>
+                </a>
+
+                <nav
+                    class="main-navigation"
+                    aria-label="Main navigation"
+                >
+                    <a
+                        href="#platform"
+                        class="nav-link active"
+                    >
+                        Platform
+                    </a>
+
+                    <a
+                        href="#methodology"
+                        class="nav-link"
+                    >
+                        Methodology
+                    </a>
+
+                    <a
+                        href="#research"
+                        class="nav-link"
+                    >
+                        Research
+                    </a>
+
+                    <a
+                        href="#about"
+                        class="nav-link"
+                    >
+                        About
+                    </a>
+                </nav>
+
+                <div class="header-actions">
+
+                    <span class="system-status">
+                        <span class="status-dot"></span>
+                        <span>System Online</span>
+                    </span>
+
+                    <a
+                        href="/assessment"
+                        class="button button-primary button-small"
+                    >
+                        Start Assessment
+                    </a>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ==================================================
+             Main Content
+        =================================================== -->
+
+        <main>
+
+            <!-- ==================================================
+                 Hero
+            =================================================== -->
+
+            <section
+                class="hero-section"
+                id="platform"
+            >
+
+                <div class="hero-grid">
+
+                    <div class="hero-content">
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            Research Intelligence Platform
+                        </div>
+
+                        <h1 class="hero-title">
+                            Understand the
+                            <span class="text-gradient">
+                                signals
+                            </span>
+                            behind student stress.
+                        </h1>
+
+                        <p class="hero-description">
+                            StressIntel PRO combines structured behavioral,
+                            academic and lifestyle signals with interpretable
+                            machine learning and qualitative journal analysis
+                            to study student stress-risk patterns.
+                        </p>
+
+                        <div class="hero-actions">
+
+                            <a
+                                href="/assessment"
+                                class="button button-primary button-large"
+                            >
+                                <span>
+                                    Run Assessment
+                                </span>
+
+                                <span class="button-arrow">
+                                    →
+                                </span>
+                            </a>
+
+                            <a
+                                href="#methodology"
+                                class="button button-secondary button-large"
+                            >
+                                Explore Methodology
+                            </a>
+
+                        </div>
+
+                        <div class="hero-meta">
+
+                            <div class="meta-item">
+                                <span class="meta-value">
+                                    21
+                                </span>
+
+                                <span class="meta-label">
+                                    Input Signals
+                                </span>
+                            </div>
+
+                            <div class="meta-divider"></div>
+
+                            <div class="meta-item">
+                                <span class="meta-value">
+                                    3
+                                </span>
+
+                                <span class="meta-label">
+                                    Risk Classes
+                                </span>
+                            </div>
+
+                            <div class="meta-divider"></div>
+
+                            <div class="meta-item">
+                                <span class="meta-value">
+                                    SHAP
+                                </span>
+
+                                <span class="meta-label">
+                                    Explainability
+                                </span>
+                            </div>
+
+                            <div class="meta-divider"></div>
+
+                            <div class="meta-item">
+                                <span class="meta-value">
+                                    LLM
+                                </span>
+
+                                <span class="meta-label">
+                                    Qualitative Layer
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         Hero Intelligence Visualization
+                    =================================================== -->
+
+                    <div class="hero-visual">
+
+                        <div class="visual-glow visual-glow-one"></div>
+                        <div class="visual-glow visual-glow-two"></div>
+
+                        <div class="signal-panel glass-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+                                    <span class="panel-kicker">
+                                        LIVE MODEL VIEW
+                                    </span>
+
+                                    <h2>
+                                        Signal Intelligence
+                                    </h2>
+                                </div>
+
+                                <span class="panel-live">
+                                    <span class="status-dot"></span>
+                                    DEMO
+                                </span>
+
+                            </div>
+
+                            <div class="signal-chart">
+
+                                <div class="chart-grid-line line-1"></div>
+                                <div class="chart-grid-line line-2"></div>
+                                <div class="chart-grid-line line-3"></div>
+                                <div class="chart-grid-line line-4"></div>
+
+                                <svg
+                                    class="signal-svg"
+                                    viewBox="0 0 600 260"
+                                    preserveAspectRatio="none"
+                                    aria-label="Illustrative signal visualization"
+                                >
+                                    <defs>
+
+                                        <linearGradient
+                                            id="signalFill"
+                                            x1="0"
+                                            y1="0"
+                                            x2="0"
+                                            y2="1"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#9b7cff"
+                                                stop-opacity="0.30"
+                                            />
+
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#9b7cff"
+                                                stop-opacity="0"
+                                            />
+                                        </linearGradient>
+
+                                        <linearGradient
+                                            id="signalStroke"
+                                            x1="0"
+                                            y1="0"
+                                            x2="1"
+                                            y2="0"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stop-color="#8b5cf6"
+                                            />
+
+                                            <stop
+                                                offset="50%"
+                                                stop-color="#d946ef"
+                                            />
+
+                                            <stop
+                                                offset="100%"
+                                                stop-color="#fb7185"
+                                            />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <path
+                                        class="signal-area"
+                                        d="M0,210
+                                           C30,205 40,170 65,178
+                                           C90,186 100,130 130,145
+                                           C160,160 175,95 205,120
+                                           C230,142 245,102 270,110
+                                           C300,120 305,70 335,82
+                                           C360,95 380,128 405,104
+                                           C430,80 445,115 470,92
+                                           C500,65 515,90 540,58
+                                           C560,35 580,60 600,42
+                                           L600,260
+                                           L0,260 Z"
+                                        fill="url(#signalFill)"
+                                    />
+
+                                    <path
+                                        class="signal-line"
+                                        d="M0,210
+                                           C30,205 40,170 65,178
+                                           C90,186 100,130 130,145
+                                           C160,160 175,95 205,120
+                                           C230,142 245,102 270,110
+                                           C300,120 305,70 335,82
+                                           C360,95 380,128 405,104
+                                           C430,80 445,115 470,92
+                                           C500,65 515,90 540,58
+                                           C560,35 580,60 600,42"
+                                        fill="none"
+                                        stroke="url(#signalStroke)"
+                                        stroke-width="4"
+                                        vector-effect="non-scaling-stroke"
+                                    />
+
+                                    <circle
+                                        cx="540"
+                                        cy="58"
+                                        r="6"
+                                        class="signal-point"
+                                    />
+
+                                    <circle
+                                        cx="540"
+                                        cy="58"
+                                        r="13"
+                                        class="signal-point-glow"
+                                    />
+                                </svg>
+
+                                <div class="chart-axis axis-left">
+                                    HIGH
+                                </div>
+
+                                <div class="chart-axis axis-mid">
+                                    MEDIUM
+                                </div>
+
+                                <div class="chart-axis axis-bottom">
+                                    LOW
+                                </div>
+
+                            </div>
+
+                            <div class="signal-footer">
+
+                                <div class="signal-stat">
+                                    <span class="signal-stat-label">
+                                        Model
+                                    </span>
+
+                                    <span class="signal-stat-value">
+                                        XGBoost
+                                    </span>
+                                </div>
+
+                                <div class="signal-stat">
+                                    <span class="signal-stat-label">
+                                        Explainability
+                                    </span>
+
+                                    <span class="signal-stat-value">
+                                        SHAP
+                                    </span>
+                                </div>
+
+                                <div class="signal-stat">
+                                    <span class="signal-stat-label">
+                                        Classes
+                                    </span>
+
+                                    <span class="signal-stat-value">
+                                        3
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="floating-card floating-card-top">
+
+                            <div class="floating-icon">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <div>
+                                <span class="floating-label">
+                                    MODEL CONFIDENCE
+                                </span>
+
+                                <strong>
+                                    Calibrated
+                                </strong>
+                            </div>
+
+                        </div>
+
+                        <div class="floating-card floating-card-bottom">
+
+                            <div class="floating-ring">
+                                <span>SHAP</span>
+                            </div>
+
+                            <div>
+                                <span class="floating-label">
+                                    INTERPRETABILITY
+                                </span>
+
+                                <strong>
+                                    Feature-level
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Research Disclaimer
+            =================================================== -->
+
+            <section class="disclaimer-section">
+
+                <div class="disclaimer-card">
+
+                    <div class="disclaimer-icon">
+                        !
+                    </div>
+
+                    <div class="disclaimer-content">
+
+                        <span class="disclaimer-title">
+                            Research-use boundary
+                        </span>
+
+                        <p>
+                            StressIntel PRO provides research-oriented
+                            stress-risk estimates. Outputs describe model
+                            behavior and statistical associations; they do
+                            not establish causality and are not clinical
+                            diagnoses.
+                        </p>
+
+                    </div>
+
+                    <a
+                        href="#about"
+                        class="text-link"
+                    >
+                        Research scope →
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Capability Grid
+            =================================================== -->
+
+            <section class="section section-capabilities">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">
+                            PLATFORM CAPABILITIES
+                        </span>
+
+                        <h2>
+                            One research workflow.
+                            <br>
+                            Multiple evidence layers.
+                        </h2>
+                    </div>
+
+                    <p>
+                        The platform separates structured prediction,
+                        qualitative analysis and explainability so each
+                        signal can be evaluated independently.
+                    </p>
+
+                </div>
+
+
+                <div class="capability-grid">
+
+                    <article class="capability-card capability-card-large">
+
+                        <div class="card-number">
+                            01
+                        </div>
+
+                        <div class="capability-icon icon-predict">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                        <div class="capability-content">
+
+                            <span class="card-kicker">
+                                PREDICTIVE ENGINE
+                            </span>
+
+                            <h3>
+                                Structured stress-risk inference
+                            </h3>
+
+                            <p>
+                                Evaluate 21 behavioral, academic,
+                                lifestyle and self-reported signals through
+                                an XGBoost classification pipeline.
+                            </p>
+
+                            <div class="tag-row">
+
+                                <span class="tag">
+                                    XGBoost
+                                </span>
+
+                                <span class="tag">
+                                    Calibration
+                                </span>
+
+                                <span class="tag">
+                                    3-Class
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="capability-card">
+
+                        <div class="card-number">
+                            02
+                        </div>
+
+                        <div class="capability-icon icon-shap">
+
+                            <div class="shap-bars">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                        <div class="capability-content">
+
+                            <span class="card-kicker">
+                                EXPLAINABILITY
+                            </span>
+
+                            <h3>
+                                SHAP model reasoning
+                            </h3>
+
+                            <p>
+                                Inspect local feature contributions and
+                                identify the strongest model-level risk and
+                                protective signals.
+                            </p>
+
+                            <a
+                                href="/assessment"
+                                class="card-link"
+                            >
+                                Inspect model reasoning →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="capability-card">
+
+                        <div class="card-number">
+                            03
+                        </div>
+
+                        <div class="capability-icon icon-journal">
+
+                            <span class="journal-line"></span>
+                            <span class="journal-line"></span>
+                            <span class="journal-line"></span>
+                            <span class="journal-dot"></span>
+
+                        </div>
+
+                        <div class="capability-content">
+
+                            <span class="card-kicker">
+                                QUALITATIVE LAYER
+                            </span>
+
+                            <h3>
+                                Journal signal analysis
+                            </h3>
+
+                            <p>
+                                Analyze journal text for sentiment, themes,
+                                contextual stress signals and uncertainty
+                                using the configured language model.
+                            </p>
+
+                            <a
+                                href="/assessment"
+                                class="card-link"
+                            >
+                                Analyze a journal →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="capability-card">
+
+                        <div class="card-number">
+                            04
+                        </div>
+
+                        <div class="capability-icon icon-simulate">
+
+                            <div class="simulate-node node-a"></div>
+                            <div class="simulate-node node-b"></div>
+                            <div class="simulate-node node-c"></div>
+
+                            <div class="simulate-link link-a"></div>
+                            <div class="simulate-link link-b"></div>
+
+                        </div>
+
+                        <div class="capability-content">
+
+                            <span class="card-kicker">
+                                SIMULATION
+                            </span>
+
+                            <h3>
+                                Scenario exploration
+                            </h3>
+
+                            <p>
+                                Modify assessment inputs and observe how the
+                                trained model responds to controlled
+                                hypothetical scenarios.
+                            </p>
+
+                            <a
+                                href="/simulation"
+                                class="card-link"
+                            >
+                                Open simulator →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="capability-card capability-card-wide">
+
+                        <div class="card-number">
+                            05
+                        </div>
+
+                        <div class="capability-icon icon-research">
+
+                            <div class="research-grid">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                        </div>
+
+                        <div class="capability-content">
+
+                            <span class="card-kicker">
+                                RESEARCH INTELLIGENCE
+                            </span>
+
+                            <h3>
+                                Reproducible research workflow
+                            </h3>
+
+                            <p>
+                                Track model versions, experiment metadata,
+                                evaluation metrics, feature importance and
+                                research limitations in one environment.
+                            </p>
+
+                            <a
+                                href="/research"
+                                class="card-link"
+                            >
+                                Open research workspace →
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Methodology
+            =================================================== -->
+
+            <section
+                class="section methodology-section"
+                id="methodology"
+            >
+
+                <div class="methodology-layout">
+
+                    <div class="methodology-intro">
+
+                        <span class="section-kicker">
+                            METHODOLOGY
+                        </span>
+
+                        <h2>
+                            From raw signals
+                            <br>
+                            to interpretable output.
+                        </h2>
+
+                        <p>
+                            Every assessment follows a defined processing
+                            pipeline designed to separate validation,
+                            feature engineering, inference, calibration and
+                            explanation.
+                        </p>
+
+                        <a
+                            href="/research"
+                            class="button button-secondary"
+                        >
+                            View Research Method
+                        </a>
+
+                    </div>
+
+
+                    <div class="methodology-flow">
+
+                        <div class="flow-line"></div>
+
+                        <div class="flow-step">
+
+                            <div class="flow-index">
+                                01
+                            </div>
+
+                            <div class="flow-marker"></div>
+
+                            <div class="flow-content">
+
+                                <span>
+                                    INPUT
+                                </span>
+
+                                <h3>
+                                    Assessment signals
+                                </h3>
+
+                                <p>
+                                    Academic, behavioral, lifestyle and
+                                    self-reported variables.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flow-step">
+
+                            <div class="flow-index">
+                                02
+                            </div>
+
+                            <div class="flow-marker"></div>
+
+                            <div class="flow-content">
+
+                                <span>
+                                    PROCESS
+                                </span>
+
+                                <h3>
+                                    Feature engineering
+                                </h3>
+
+                                <p>
+                                    Derived measures such as study-sleep
+                                    ratio and academic load index.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flow-step">
+
+                            <div class="flow-index">
+                                03
+                            </div>
+
+                            <div class="flow-marker"></div>
+
+                            <div class="flow-content">
+
+                                <span>
+                                    MODEL
+                                </span>
+
+                                <h3>
+                                    XGBoost inference
+                                </h3>
+
+                                <p>
+                                    Three-class stress-risk classification
+                                    with probability estimates.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flow-step">
+
+                            <div class="flow-index">
+                                04
+                            </div>
+
+                            <div class="flow-marker"></div>
+
+                            <div class="flow-content">
+
+                                <span>
+                                    EXPLAIN
+                                </span>
+
+                                <h3>
+                                    SHAP attribution
+                                </h3>
+
+                                <p>
+                                    Local feature contributions explain the
+                                    model's prediction.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="flow-step">
+
+                            <div class="flow-index">
+                                05
+                            </div>
+
+                            <div class="flow-marker flow-marker-final"></div>
+
+                            <div class="flow-content">
+
+                                <span>
+                                    OUTPUT
+                                </span>
+
+                                <h3>
+                                    Research interpretation
+                                </h3>
+
+                                <p>
+                                    Prediction, confidence, explanations
+                                    and supporting qualitative evidence.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Signal Categories
+            =================================================== -->
+
+            <section class="section signal-section">
+
+                <div class="section-heading centered">
+
+                    <span class="section-kicker">
+                        21-PARAMETER ASSESSMENT
+                    </span>
+
+                    <h2>
+                        Multiple signal families.
+                        <br>
+                        One interpretable framework.
+                    </h2>
+
+                    <p>
+                        StressIntel PRO organizes assessment variables into
+                        research-relevant signal groups.
+                    </p>
+
+                </div>
+
+
+                <div class="signal-family-grid">
+
+                    <div class="signal-family">
+
+                        <div class="family-header">
+
+                            <span class="family-index">
+                                01
+                            </span>
+
+                            <span class="family-icon">
+                                A
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Academic
+                        </h3>
+
+                        <div class="family-list">
+
+                            <span>
+                                Academic performance
+                            </span>
+
+                            <span>
+                                Study hours
+                            </span>
+
+                            <span>
+                                Academic pressure
+                            </span>
+
+                            <span>
+                                Attendance
+                            </span>
+
+                            <span>
+                                Assignment completion
+                            </span>
+
+                            <span>
+                                Exam anxiety
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="signal-family">
+
+                        <div class="family-header">
+
+                            <span class="family-index">
+                                02
+                            </span>
+
+                            <span class="family-icon">
+                                B
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Behavioral
+                        </h3>
+
+                        <div class="family-list">
+
+                            <span>
+                                Study behavior
+                            </span>
+
+                            <span>
+                                Screen time
+                            </span>
+
+                            <span>
+                                Physical activity
+                            </span>
+
+                            <span>
+                                Social interaction
+                            </span>
+
+                            <span>
+                                Time management
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="signal-family">
+
+                        <div class="family-header">
+
+                            <span class="family-index">
+                                03
+                            </span>
+
+                            <span class="family-icon">
+                                S
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Sleep & Lifestyle
+                        </h3>
+
+                        <div class="family-list">
+
+                            <span>
+                                Sleep duration
+                            </span>
+
+                            <span>
+                                Sleep quality
+                            </span>
+
+                            <span>
+                                Study-sleep ratio
+                            </span>
+
+                            <span>
+                                Mood score
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="signal-family">
+
+                        <div class="family-header">
+
+                            <span class="family-index">
+                                04
+                            </span>
+
+                            <span class="family-icon">
+                                P
+                            </span>
+
+                        </div>
+
+                        <h3>
+                            Psychosocial
+                        </h3>
+
+                        <div class="family-list">
+
+                            <span>
+                                Financial stress
+                            </span>
+
+                            <span>
+                                Family pressure
+                            </span>
+
+                            <span>
+                                Peer pressure
+                            </span>
+
+                            <span>
+                                Self-reported stress
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Research Section
+            =================================================== -->
+
+            <section
+                class="section research-section"
+                id="research"
+            >
+
+                <div class="research-panel">
+
+                    <div class="research-copy">
+
+                        <span class="section-kicker">
+                            RESEARCH LAYER
+                        </span>
+
+                        <h2>
+                            Built for reproducibility,
+                            <br>
+                            not just prediction.
+                        </h2>
+
+                        <p>
+                            The platform is designed around the evidence
+                            requirements of a research workflow: documented
+                            datasets, controlled experiments, evaluation
+                            metrics, model versioning, explainability and
+                            explicit limitations.
+                        </p>
+
+                        <div class="research-actions">
+
+                            <a
+                                href="/research"
+                                class="button button-primary"
+                            >
+                                Research Dashboard
+                            </a>
+
+                            <a
+                                href="#about"
+                                class="text-link"
+                            >
+                                Read scope & limitations →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="research-metrics">
+
+                        <div class="research-metric">
+
+                            <span class="metric-label">
+                                MODEL
+                            </span>
+
+                            <strong>
+                                XGBoost
+                            </strong>
+
+                            <span>
+                                Gradient boosting classifier
+                            </span>
+
+                        </div>
+
+
+                        <div class="research-metric">
+
+                            <span class="metric-label">
+                                EXPLAINABILITY
+                            </span>
+
+                            <strong>
+                                SHAP
+                            </strong>
+
+                            <span>
+                                Tree-based attribution
+                            </span>
+
+                        </div>
+
+
+                        <div class="research-metric">
+
+                            <span class="metric-label">
+                                QUALITATIVE
+                            </span>
+
+                            <strong>
+                                GROQ
+                            </strong>
+
+                            <span>
+                                Configurable LLM layer
+                            </span>
+
+                        </div>
+
+
+                        <div class="research-metric">
+
+                            <span class="metric-label">
+                                TARGET
+                            </span>
+
+                            <strong>
+                                3-Class
+                            </strong>
+
+                            <span>
+                                Low / Medium / High
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 About / Boundaries
+            =================================================== -->
+
+            <section
+                class="section about-section"
+                id="about"
+            >
+
+                <div class="about-grid">
+
+                    <div class="about-heading">
+
+                        <span class="section-kicker">
+                            ABOUT THE PLATFORM
+                        </span>
+
+                        <h2>
+                            A research instrument
+                            <br>
+                            with explicit boundaries.
+                        </h2>
+
+                    </div>
+
+
+                    <div class="about-content">
+
+                        <p class="about-lead">
+                            StressIntel PRO investigates how heterogeneous
+                            student-related signals can be combined into an
+                            interpretable stress-risk estimate.
+                        </p>
+
+                        <div class="boundary-grid">
+
+                            <div class="boundary-item">
+
+                                <span class="boundary-symbol">
+                                    +
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Designed for
+                                    </strong>
+
+                                    <p>
+                                        Research, experimentation,
+                                        model analysis and educational
+                                        demonstrations.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="boundary-item">
+
+                                <span class="boundary-symbol">
+                                    −
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Not designed for
+                                    </strong>
+
+                                    <p>
+                                        Medical diagnosis, clinical
+                                        decisions or replacement of
+                                        professional support.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="boundary-item">
+
+                                <span class="boundary-symbol">
+                                    ≠
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Interpretation ≠ causality
+                                    </strong>
+
+                                    <p>
+                                        SHAP contributions describe model
+                                        behavior and do not prove causal
+                                        effects.
+                                    </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="boundary-item">
+
+                                <span class="boundary-symbol">
+                                    ◇
+                                </span>
+
+                                <div>
+                                    <strong>
+                                        Development data
+                                    </strong>
+
+                                    <p>
+                                        The included sample dataset is
+                                        synthetic and is not population
+                                        evidence.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==================================================
+                 Final CTA
+            =================================================== -->
+
+            <section class="final-cta-section">
+
+                <div class="final-cta-glow"></div>
+
+                <div class="final-cta-content">
+
+                    <span class="section-kicker">
+                        BEGIN ANALYSIS
+                    </span>
+
+                    <h2>
+                        Explore the signals.
+                        <br>
+                        Inspect the model.
+                    </h2>
+
+                    <p>
+                        Run a research-oriented assessment using the
+                        StressIntel PRO analysis workflow.
+                    </p>
+
+                    <a
+                        href="/assessment"
+                        class="button button-primary button-large"
+                    >
+                        Start Assessment
+                        <span class="button-arrow">
+                            →
+                        </span>
+                    </a>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ==================================================
+             Footer
+        =================================================== -->
+
+        <footer class="site-footer">
+
+            <div class="footer-inner">
+
+                <div class="footer-brand">
+
+                    <a
+                        href="/"
+                        class="brand"
+                    >
+                        <span class="brand-mark">
+                            <span class="brand-mark-line"></span>
+                            <span class="brand-mark-line"></span>
+                            <span class="brand-mark-line"></span>
+                        </span>
+
+                        <span class="brand-copy">
+                            <span class="brand-name">
+                                StressIntel
+                            </span>
+
+                            <span class="brand-version">
+                                PRO
+                            </span>
+                        </span>
+                    </a>
+
+                    <p>
+                        Deployable research platform for student stress
+                        analysis.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <div class="footer-column">
+
+                        <span class="footer-title">
+                            PLATFORM
+                        </span>
+
+                        <a href="/assessment">
+                            Assessment
+                        </a>
+
+                        <a href="/simulation">
+                            Simulation
+                        </a>
+
+                        <a href="/research">
+                            Research
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-column">
+
+                        <span class="footer-title">
+                            DOCUMENTATION
+                        </span>
+
+                        <a href="#methodology">
+                            Methodology
+                        </a>
+
+                        <a href="#about">
+                            Scope
+                        </a>
+
+                        <a href="/research">
+                            Experiments
+                        </a>
+
+                    </div>
+
+
+                    <div class="footer-column">
+
+                        <span class="footer-title">
+                            SYSTEM
+                        </span>
+
+                        <a href="/api/health/">
+                            Health
+                        </a>
+
+                        <span class="footer-system">
+                            v1.0.0
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 StressIntel PRO
+                </span>
+
+                <span>
+                    Research prototype · Not a medical device
+                </span>
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- ======================================================
+         Global Application Script
+    ======================================================= -->
+
+    <script
+        src="{{ url_for('static', filename='js/app.js') }}"
+        defer
+    ></script>
+
+</body>
+</html>

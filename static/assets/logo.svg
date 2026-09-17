@@ -1,0 +1,211 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 520 120"
+    role="img"
+    aria-labelledby="title desc"
+>
+    <title id="title">StressIntel PRO</title>
+    <desc id="desc">
+        StressIntel PRO research platform logo
+    </desc>
+
+    <defs>
+        <linearGradient
+            id="stressintel-gradient"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="1"
+        >
+            <stop
+                offset="0%"
+                stop-color="#8B5CF6"
+            />
+            <stop
+                offset="100%"
+                stop-color="#EC4899"
+            />
+        </linearGradient>
+
+        <linearGradient
+            id="stressintel-line"
+            x1="0"
+            y1="0"
+            x2="1"
+            y2="0"
+        >
+            <stop
+                offset="0%"
+                stop-color="#8B5CF6"
+            />
+            <stop
+                offset="100%"
+                stop-color="#EC4899"
+            />
+        </linearGradient>
+
+        <filter
+            id="logo-glow"
+            x="-50%"
+            y="-50%"
+            width="200%"
+            height="200%"
+        >
+            <feGaussianBlur
+                stdDeviation="4"
+                result="blur"
+            />
+
+            <feMerge>
+                <feMergeNode
+                    in="blur"
+                />
+                <feMergeNode
+                    in="SourceGraphic"
+                />
+            </feMerge>
+        </filter>
+    </defs>
+
+    <!-- Mark -->
+    <g
+        transform="translate(12 12)"
+        filter="url(#logo-glow)"
+    >
+        <!-- Outer analytical frame -->
+        <rect
+            x="0"
+            y="0"
+            width="96"
+            height="96"
+            rx="24"
+            fill="none"
+            stroke="url(#stressintel-gradient)"
+            stroke-width="4"
+            opacity="0.35"
+        />
+
+        <!-- Neural / signal structure -->
+        <path
+            d="M18 58
+               C25 58 27 39 36 39
+               C45 39 47 70 57 70
+               C67 70 70 28 79 28"
+            fill="none"
+            stroke="url(#stressintel-line)"
+            stroke-width="5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+
+        <!-- Signal nodes -->
+        <circle
+            cx="18"
+            cy="58"
+            r="6"
+            fill="#8B5CF6"
+        />
+
+        <circle
+            cx="36"
+            cy="39"
+            r="6"
+            fill="#A855F7"
+        />
+
+        <circle
+            cx="57"
+            cy="70"
+            r="6"
+            fill="#D946EF"
+        />
+
+        <circle
+            cx="79"
+            cy="28"
+            r="6"
+            fill="#EC4899"
+        />
+
+        <!-- Central intelligence node -->
+        <circle
+            cx="48"
+            cy="48"
+            r="10"
+            fill="#050505"
+            stroke="url(#stressintel-gradient)"
+            stroke-width="3"
+        />
+
+        <circle
+            cx="48"
+            cy="48"
+            r="3"
+            fill="#FFFFFF"
+        />
+
+        <!-- Analytical crosshair -->
+        <path
+            d="M48 31V38
+               M48 58V65
+               M31 48H38
+               M58 48H65"
+            stroke="#FFFFFF"
+            stroke-width="2"
+            stroke-linecap="round"
+            opacity="0.7"
+        />
+    </g>
+
+    <!-- Wordmark -->
+    <g
+        transform="translate(132 27)"
+    >
+        <text
+            x="0"
+            y="42"
+            fill="#FFFFFF"
+            font-family="Inter, Arial, Helvetica, sans-serif"
+            font-size="39"
+            font-weight="700"
+            letter-spacing="-1.4"
+        >
+            StressIntel
+        </text>
+
+        <text
+            x="281"
+            y="42"
+            fill="url(#stressintel-gradient)"
+            font-family="Inter, Arial, Helvetica, sans-serif"
+            font-size="39"
+            font-weight="800"
+            letter-spacing="-1.2"
+        >
+            PRO
+        </text>
+
+        <!-- Research descriptor -->
+        <text
+            x="2"
+            y="68"
+            fill="#8D96A8"
+            font-family="Inter, Arial, Helvetica, sans-serif"
+            font-size="11"
+            font-weight="600"
+            letter-spacing="3"
+        >
+            RESEARCH INTELLIGENCE PLATFORM
+        </text>
+
+        <!-- Accent line -->
+        <rect
+            x="2"
+            y="79"
+            width="120"
+            height="2"
+            rx="1"
+            fill="url(#stressintel-gradient)"
+        />
+    </g>
+</svg>

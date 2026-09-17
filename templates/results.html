@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO — Interpretable stress-risk assessment results"
+    >
+
+    <meta name="theme-color" content="#08090d">
+
+    <title>Analysis Results | StressIntel PRO</title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ url_for('static', filename='assets/favicon.svg') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ======================================================
+         Header
+    ======================================================= -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a
+                href="/"
+                class="brand"
+                aria-label="StressIntel PRO home"
+            >
+                <span class="brand-mark">
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                </span>
+
+                <span class="brand-copy">
+                    <span class="brand-name">
+                        StressIntel
+                    </span>
+
+                    <span class="brand-version">
+                        PRO
+                    </span>
+                </span>
+            </a>
+
+            <nav
+                class="main-navigation"
+                aria-label="Main navigation"
+            >
+                <a
+                    href="/"
+                    class="nav-link"
+                >
+                    Platform
+                </a>
+
+                <a
+                    href="/assessment"
+                    class="nav-link"
+                >
+                    Assessment
+                </a>
+
+                <a
+                    href="/simulation"
+                    class="nav-link"
+                >
+                    Simulation
+                </a>
+
+                <a
+                    href="/research"
+                    class="nav-link"
+                >
+                    Research
+                </a>
+            </nav>
+
+            <div class="header-actions">
+
+                <span class="system-status">
+                    <span class="status-dot"></span>
+                    Analysis Complete
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         Main Results
+    ======================================================= -->
+
+    <main>
+
+        <section class="results-page">
+
+            <div class="results-container">
+
+                <!-- ==========================================
+                     Result Header
+                =========================================== -->
+
+                <div class="results-header">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            Model Inference
+                        </div>
+
+                        <h1>
+                            Analysis
+                            <span class="text-gradient">
+                                results
+                            </span>
+                        </h1>
+
+                        <p>
+                            The following output represents the configured
+                            model's estimate for the submitted assessment.
+                        </p>
+
+                    </div>
+
+                    <div class="result-actions">
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="newAssessmentButton"
+                        >
+                            ← New Assessment
+                        </button>
+
+                        <button
+                            type="button"
+                            class="button button-primary"
+                            id="generateReportButton"
+                        >
+                            Generate Report
+                            <span>→</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Research Warning
+                =========================================== -->
+
+                <div class="results-disclaimer">
+
+                    <span class="disclaimer-icon">
+                        !
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Research-oriented output
+                        </strong>
+
+                        <p>
+                            This result is a model-estimated stress-risk
+                            category. It is not a medical diagnosis and
+                            feature contributions do not establish causality.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Primary Result Grid
+                =========================================== -->
+
+                <div class="results-primary-grid">
+
+                    <!-- ======================================
+                         Risk Result
+                    ======================================= -->
+
+                    <section class="result-hero-card glass-panel">
+
+                        <div class="result-card-header">
+
+                            <div>
+
+                                <span class="panel-kicker">
+                                    PREDICTED RISK CLASS
+                                </span>
+
+                                <span
+                                    class="result-card-status"
+                                    id="resultStatus"
+                                >
+                                    MODEL OUTPUT
+                                </span>
+
+                            </div>
+
+                            <span
+                                class="model-version"
+                                id="modelVersion"
+                            >
+                                Model v1.0.0
+                            </span>
+
+                        </div>
+
+
+                        <div class="risk-result">
+
+                            <div
+                                class="risk-orbit"
+                                id="riskOrbit"
+                            >
+
+                                <div class="risk-orbit-inner">
+
+                                    <span
+                                        class="risk-label"
+                                        id="riskLabel"
+                                    >
+                                        —
+                                    </span>
+
+                                    <span class="risk-caption">
+                                        STRESS RISK
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="risk-copy">
+
+                                <span class="risk-eyebrow">
+                                    MODEL ESTIMATE
+                                </span>
+
+                                <h2 id="predictedClass">
+                                    Loading...
+                                </h2>
+
+                                <p id="riskInterpretation">
+                                    Processing model output...
+                                </p>
+
+                                <div class="confidence-block">
+
+                                    <div class="confidence-header">
+
+                                        <span>
+                                            Model confidence
+                                        </span>
+
+                                        <strong id="confidencePercentage">
+                                            —
+                                        </strong>
+
+                                    </div>
+
+                                    <div class="confidence-track">
+
+                                        <div
+                                            class="confidence-bar"
+                                            id="confidenceBar"
+                                            style="width: 0%;"
+                                        ></div>
+
+                                    </div>
+
+                                    <span class="confidence-note">
+                                        Confidence is not equivalent to
+                                        prediction correctness.
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         Probability Distribution
+                    ======================================= -->
+
+                    <section class="probability-card glass-panel">
+
+                        <div class="result-card-header">
+
+                            <div>
+
+                                <span class="panel-kicker">
+                                    CLASS DISTRIBUTION
+                                </span>
+
+                                <h2>
+                                    Probability profile
+                                </h2>
+
+                            </div>
+
+                            <span class="entropy-badge">
+                                Entropy:
+                                <strong id="predictionEntropy">
+                                    —
+                                </strong>
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="probability-chart"
+                            id="probabilityChart"
+                        >
+
+                            <div class="probability-row">
+
+                                <div class="probability-label">
+                                    <span class="risk-dot risk-low"></span>
+                                    Low
+                                </div>
+
+                                <div class="probability-track">
+
+                                    <div
+                                        class="probability-fill risk-low-fill"
+                                        id="lowProbabilityBar"
+                                        style="width: 0%;"
+                                    ></div>
+
+                                </div>
+
+                                <strong
+                                    id="lowProbability"
+                                    class="probability-value"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="probability-row">
+
+                                <div class="probability-label">
+                                    <span class="risk-dot risk-medium"></span>
+                                    Medium
+                                </div>
+
+                                <div class="probability-track">
+
+                                    <div
+                                        class="probability-fill risk-medium-fill"
+                                        id="mediumProbabilityBar"
+                                        style="width: 0%;"
+                                    ></div>
+
+                                </div>
+
+                                <strong
+                                    id="mediumProbability"
+                                    class="probability-value"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+
+                            <div class="probability-row">
+
+                                <div class="probability-label">
+                                    <span class="risk-dot risk-high"></span>
+                                    High
+                                </div>
+
+                                <div class="probability-track">
+
+                                    <div
+                                        class="probability-fill risk-high-fill"
+                                        id="highProbabilityBar"
+                                        style="width: 0%;"
+                                    ></div>
+
+                                </div>
+
+                                <strong
+                                    id="highProbability"
+                                    class="probability-value"
+                                >
+                                    0%
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="probability-note">
+
+                            <span>
+                                PROBABILITIES
+                            </span>
+
+                            <p>
+                                Values represent the model's estimated
+                                distribution across the configured classes.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Explanation Section
+                =========================================== -->
+
+                <section class="results-section">
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                EXPLAINABILITY
+                            </span>
+
+                            <h2>
+                                Why did the model
+                                <span class="text-gradient">
+                                    respond this way?
+                                </span>
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            SHAP estimates how individual features
+                            contributed to this model prediction relative
+                            to its baseline.
+                        </p>
+
+                    </div>
+
+
+                    <div class="explanation-grid">
+
+                        <!-- ==================================
+                             Risk Drivers
+                        =================================== -->
+
+                        <section class="explanation-card">
+
+                            <div class="explanation-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        POSITIVE CONTRIBUTIONS
+                                    </span>
+
+                                    <h3>
+                                        Top risk drivers
+                                    </h3>
+
+                                </div>
+
+                                <span class="explanation-symbol">
+                                    ↑
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="feature-list"
+                                id="riskDriversList"
+                            >
+
+                                <div class="feature-empty">
+                                    <span></span>
+
+                                    <p>
+                                        SHAP explanation will appear here
+                                        after inference.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- ==================================
+                             Protective Factors
+                        =================================== -->
+
+                        <section class="explanation-card">
+
+                            <div class="explanation-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        NEGATIVE CONTRIBUTIONS
+                                    </span>
+
+                                    <h3>
+                                        Protective factors
+                                    </h3>
+
+                                </div>
+
+                                <span class="explanation-symbol">
+                                    ↓
+                                </span>
+
+                            </div>
+
+                            <div
+                                class="feature-list"
+                                id="protectiveFactorsList"
+                            >
+
+                                <div class="feature-empty">
+                                    <span></span>
+
+                                    <p>
+                                        SHAP explanation will appear here
+                                        after inference.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     All Feature Contributions
+                =========================================== -->
+
+                <section class="results-section">
+
+                    <div class="section-heading compact">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                LOCAL FEATURE ATTRIBUTION
+                            </span>
+
+                            <h2>
+                                Full contribution profile
+                            </h2>
+
+                        </div>
+
+                        <span class="method-badge">
+                            SHAP TreeExplainer
+                        </span>
+
+                    </div>
+
+
+                    <div class="contribution-panel">
+
+                        <div class="contribution-table-header">
+
+                            <span>
+                                FEATURE
+                            </span>
+
+                            <span>
+                                VALUE
+                            </span>
+
+                            <span>
+                                SHAP
+                            </span>
+
+                            <span>
+                                IMPACT
+                            </span>
+
+                        </div>
+
+                        <div
+                            class="contribution-list"
+                            id="contributionList"
+                        >
+
+                            <div class="table-loading">
+                                Loading feature contributions...
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="explanation-footnote">
+
+                        <span class="footnote-icon">
+                            i
+                        </span>
+
+                        <p>
+                            SHAP values explain the behavior of the trained
+                            model for this observation. A positive value
+                            indicates contribution toward the model output
+                            direction; a negative value indicates contribution
+                            away from it. This is not causal evidence.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Journal Analysis
+                =========================================== -->
+
+                <section
+                    class="results-section journal-results-section"
+                    id="journalResultsSection"
+                >
+
+                    <div class="section-heading">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                QUALITATIVE LAYER
+                            </span>
+
+                            <h2>
+                                Journal
+                                <span class="text-gradient">
+                                    signal analysis
+                                </span>
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            Supplementary qualitative analysis from the
+                            optional journal entry.
+                        </p>
+
+                    </div>
+
+
+                    <div class="journal-result-grid">
+
+                        <div class="journal-summary-card">
+
+                            <div class="journal-summary-header">
+
+                                <span class="panel-kicker">
+                                    SENTIMENT
+                                </span>
+
+                                <span
+                                    class="journal-status"
+                                    id="journalAnalysisStatus"
+                                >
+                                    Not analyzed
+                                </span>
+
+                            </div>
+
+                            <div class="journal-sentiment">
+
+                                <div
+                                    class="sentiment-orb"
+                                    id="sentimentOrb"
+                                >
+                                    ?
+                                </div>
+
+                                <div>
+
+                                    <h3 id="journalSentiment">
+                                        —
+                                    </h3>
+
+                                    <span id="journalSentimentScore">
+                                        Score unavailable
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                            <p
+                                class="journal-summary-text"
+                                id="journalSummary"
+                            >
+                                No journal analysis is available for this
+                                assessment.
+                            </p>
+
+                        </div>
+
+
+                        <div class="journal-signal-card">
+
+                            <div class="journal-summary-header">
+
+                                <span class="panel-kicker">
+                                    STRESS SIGNAL
+                                </span>
+
+                                <span
+                                    id="journalStressSignal"
+                                    class="stress-signal-badge"
+                                >
+                                    —
+                                </span>
+
+                            </div>
+
+                            <div class="journal-score">
+
+                                <strong id="journalStressScore">
+                                    —
+                                </strong>
+
+                                <span>
+                                    signal score
+                                </span>
+
+                            </div>
+
+                            <div class="journal-score-track">
+
+                                <div
+                                    id="journalStressScoreBar"
+                                    style="width: 0%;"
+                                ></div>
+
+                            </div>
+
+                            <p id="journalUncertainty">
+                                Analysis uncertainty will be displayed
+                                here.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="journal-detail-grid">
+
+                        <div class="journal-detail-card">
+
+                            <span class="panel-kicker">
+                                POSSIBLE STRESSORS
+                            </span>
+
+                            <div
+                                class="tag-cloud"
+                                id="stressorTags"
+                            >
+                                <span class="empty-tag">
+                                    None identified
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journal-detail-card">
+
+                            <span class="panel-kicker">
+                                PROTECTIVE SIGNALS
+                            </span>
+
+                            <div
+                                class="tag-cloud"
+                                id="protectiveTags"
+                            >
+                                <span class="empty-tag">
+                                    None identified
+                                </span>
+                            </div>
+
+                        </div>
+
+
+                        <div class="journal-detail-card">
+
+                            <span class="panel-kicker">
+                                THEMES
+                            </span>
+
+                            <div
+                                class="tag-cloud"
+                                id="themeTags"
+                            >
+                                <span class="empty-tag">
+                                    None identified
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="journal-recommendation">
+
+                        <span class="recommendation-icon">
+                            i
+                        </span>
+
+                        <div>
+
+                            <span class="panel-kicker">
+                                GENERAL GUIDANCE
+                            </span>
+
+                            <p id="journalRecommendation">
+                                No automated guidance was generated.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Model Metadata
+                =========================================== -->
+
+                <section class="results-section">
+
+                    <div class="section-heading compact">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                REPRODUCIBILITY
+                            </span>
+
+                            <h2>
+                                Model metadata
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="metadata-grid">
+
+                        <div class="metadata-item">
+
+                            <span>
+                                MODEL
+                            </span>
+
+                            <strong id="metadataModel">
+                                XGBoost
+                            </strong>
+
+                        </div>
+
+                        <div class="metadata-item">
+
+                            <span>
+                                VERSION
+                            </span>
+
+                            <strong id="metadataVersion">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="metadata-item">
+
+                            <span>
+                                CLASSES
+                            </span>
+
+                            <strong id="metadataClasses">
+                                Low · Medium · High
+                            </strong>
+
+                        </div>
+
+                        <div class="metadata-item">
+
+                            <span>
+                                CALIBRATION
+                            </span>
+
+                            <strong id="metadataCalibration">
+                                —
+                            </strong>
+
+                        </div>
+
+                        <div class="metadata-item">
+
+                            <span>
+                                SHAP METHOD
+                            </span>
+
+                            <strong>
+                                TreeExplainer
+                            </strong>
+
+                        </div>
+
+                        <div class="metadata-item">
+
+                            <span>
+                                OUTPUT TYPE
+                            </span>
+
+                            <strong>
+                                Research estimate
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Next Actions
+                =========================================== -->
+
+                <section class="next-actions-section">
+
+                    <div class="next-actions-card">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                CONTINUE RESEARCH
+                            </span>
+
+                            <h2>
+                                Explore the model further.
+                            </h2>
+
+                            <p>
+                                Compare hypothetical scenarios, inspect
+                                research metrics or generate a structured
+                                report from this analysis.
+                            </p>
+
+                        </div>
+
+                        <div class="next-actions-buttons">
+
+                            <a
+                                href="/simulation"
+                                class="button button-secondary"
+                            >
+                                Scenario Simulator
+                            </a>
+
+                            <a
+                                href="/research"
+                                class="button button-primary"
+                            >
+                                Research Workspace
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Final Disclaimer
+                =========================================== -->
+
+                <div class="results-final-disclaimer">
+
+                    <span>
+                        RESEARCH BOUNDARY
+                    </span>
+
+                    <p>
+                        StressIntel PRO is a research prototype. Model
+                        confidence does not establish correctness, SHAP
+                        contributions do not establish causality, and
+                        stress-risk categories are not clinical diagnoses.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         Footer
+    ======================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a
+                    href="/"
+                    class="brand"
+                >
+                    <span class="brand-mark">
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                    </span>
+
+                    <span class="brand-copy">
+                        <span class="brand-name">
+                            StressIntel
+                        </span>
+
+                        <span class="brand-version">
+                            PRO
+                        </span>
+                    </span>
+                </a>
+
+                <p>
+                    Interpretable research-oriented stress analysis.
+                </p>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 StressIntel PRO
+                </span>
+
+                <span>
+                    Research prototype · Not a medical device
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- ==========================================================
+     Loading Overlay
+=========================================================== -->
+
+<div
+    class="loading-overlay"
+    id="resultsLoadingOverlay"
+    hidden
+    aria-live="polite"
+>
+
+    <div class="loading-card">
+
+        <div class="loading-spinner"></div>
+
+        <strong>
+            Processing analysis
+        </strong>
+
+        <span>
+            Generating model explanation...
+        </span>
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+    defer
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/results.js') }}"
+    defer
+></script>
+
+</body>
+</html>

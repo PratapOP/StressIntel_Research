@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO — Research-oriented student stress assessment"
+    >
+
+    <meta name="theme-color" content="#08090d">
+
+    <title>Assessment | StressIntel PRO</title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ url_for('static', filename='assets/favicon.svg') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ======================================================
+         Header
+    ======================================================= -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a
+                href="/"
+                class="brand"
+                aria-label="StressIntel PRO home"
+            >
+                <span class="brand-mark">
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                </span>
+
+                <span class="brand-copy">
+                    <span class="brand-name">
+                        StressIntel
+                    </span>
+
+                    <span class="brand-version">
+                        PRO
+                    </span>
+                </span>
+            </a>
+
+            <nav
+                class="main-navigation"
+                aria-label="Main navigation"
+            >
+                <a href="/" class="nav-link">
+                    Platform
+                </a>
+
+                <a
+                    href="/assessment"
+                    class="nav-link active"
+                >
+                    Assessment
+                </a>
+
+                <a
+                    href="/simulation"
+                    class="nav-link"
+                >
+                    Simulation
+                </a>
+
+                <a
+                    href="/research"
+                    class="nav-link"
+                >
+                    Research
+                </a>
+            </nav>
+
+            <div class="header-actions">
+
+                <span class="system-status">
+                    <span class="status-dot"></span>
+                    Research Mode
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         Main
+    ======================================================= -->
+
+    <main>
+
+        <section class="assessment-page">
+
+            <div class="assessment-container">
+
+                <!-- ==========================================
+                     Page Header
+                =========================================== -->
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            Multidimensional Assessment
+                        </div>
+
+                        <h1>
+                            Stress-risk
+                            <span class="text-gradient">
+                                assessment
+                            </span>
+                        </h1>
+
+                        <p>
+                            Provide the structured signals required by the
+                            research model. The system calculates derived
+                            features automatically before inference.
+                        </p>
+
+                    </div>
+
+                    <div class="assessment-status-card">
+
+                        <span class="status-card-label">
+                            MODEL INPUT
+                        </span>
+
+                        <strong>
+                            21 Signals
+                        </strong>
+
+                        <span>
+                            3-class classification
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Progress
+                =========================================== -->
+
+                <div class="assessment-progress">
+
+                    <div class="progress-top">
+
+                        <span>
+                            <strong id="currentStepLabel">
+                                1
+                            </strong>
+                            / 5 sections
+                        </span>
+
+                        <span id="progressPercentage">
+                            20%
+                        </span>
+
+                    </div>
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-bar"
+                            id="progressBar"
+                            style="width: 20%;"
+                        ></div>
+
+                    </div>
+
+                    <div class="progress-steps">
+
+                        <span
+                            class="progress-step active"
+                            data-step-indicator="1"
+                        >
+                            Profile
+                        </span>
+
+                        <span
+                            class="progress-step"
+                            data-step-indicator="2"
+                        >
+                            Academic
+                        </span>
+
+                        <span
+                            class="progress-step"
+                            data-step-indicator="3"
+                        >
+                            Lifestyle
+                        </span>
+
+                        <span
+                            class="progress-step"
+                            data-step-indicator="4"
+                        >
+                            Context
+                        </span>
+
+                        <span
+                            class="progress-step"
+                            data-step-indicator="5"
+                        >
+                            Review
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Assessment Form
+                =========================================== -->
+
+                <form
+                    id="assessmentForm"
+                    class="assessment-form"
+                    novalidate
+                >
+
+                    <!-- ======================================
+                         STEP 1 — Profile
+                    ======================================= -->
+
+                    <section
+                        class="assessment-step active"
+                        data-step="1"
+                    >
+
+                        <div class="step-header">
+
+                            <div class="step-index">
+                                01
+                            </div>
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    PROFILE
+                                </span>
+
+                                <h2>
+                                    Basic assessment context
+                                </h2>
+
+                                <p>
+                                    These fields establish the basic
+                                    demographic context for the research
+                                    model.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid form-grid-two">
+
+                            <div class="form-field">
+
+                                <label for="age">
+                                    Age
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="age"
+                                    name="age"
+                                    min="13"
+                                    max="100"
+                                    step="1"
+                                    placeholder="e.g. 21"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                                <span class="field-help">
+                                    Research-supported range: 13–100
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="age"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="gender">
+                                    Gender
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    required
+                                >
+                                    <option
+                                        value=""
+                                        selected
+                                        disabled
+                                    >
+                                        Select an option
+                                    </option>
+
+                                    <option value="Male">
+                                        Male
+                                    </option>
+
+                                    <option value="Female">
+                                        Female
+                                    </option>
+
+                                    <option value="Non-binary">
+                                        Non-binary
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                    <option value="Prefer not to say">
+                                        Prefer not to say
+                                    </option>
+                                </select>
+
+                                <span class="field-help">
+                                    Used only as a model input where configured.
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="gender"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="research-note">
+
+                            <span class="note-icon">
+                                i
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    Data minimization
+                                </strong>
+
+                                <p>
+                                    Do not enter names, email addresses,
+                                    university IDs, phone numbers or other
+                                    directly identifying information.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         STEP 2 — Academic
+                    ======================================= -->
+
+                    <section
+                        class="assessment-step"
+                        data-step="2"
+                    >
+
+                        <div class="step-header">
+
+                            <div class="step-index">
+                                02
+                            </div>
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    ACADEMIC SIGNALS
+                                </span>
+
+                                <h2>
+                                    Academic workload & performance
+                                </h2>
+
+                                <p>
+                                    Estimate your current academic workload
+                                    using the ranges provided.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid form-grid-two">
+
+                            <div class="form-field">
+
+                                <label for="academic_performance">
+                                    Academic performance
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="academic_performance"
+                                        name="academic_performance"
+                                        min="0"
+                                        max="100"
+                                        step="0.1"
+                                        placeholder="e.g. 78"
+                                        required
+                                    >
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    0–100
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="academic_performance"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="study_hours">
+                                    Daily study hours
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="study_hours"
+                                        name="study_hours"
+                                        min="0"
+                                        max="24"
+                                        step="0.1"
+                                        placeholder="e.g. 6"
+                                        required
+                                    >
+
+                                    <span>
+                                        hrs
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Average hours per day
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="study_hours"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="academic_pressure">
+                                    Academic pressure
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="academic_pressure"
+                                        name="academic_pressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-output="academicPressureOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0 — None
+                                        </span>
+
+                                        <output
+                                            id="academicPressureOutput"
+                                        >
+                                            5
+                                        </output>
+
+                                        <span>
+                                            10 — Very high
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="academic_pressure"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="attendance_percentage">
+                                    Attendance
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="attendance_percentage"
+                                        name="attendance_percentage"
+                                        min="0"
+                                        max="100"
+                                        step="0.1"
+                                        placeholder="e.g. 85"
+                                        required
+                                    >
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Current attendance percentage
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="attendance_percentage"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="assignment_completion">
+                                    Assignment completion
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="assignment_completion"
+                                        name="assignment_completion"
+                                        min="0"
+                                        max="100"
+                                        step="0.1"
+                                        placeholder="e.g. 80"
+                                        required
+                                    >
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Approximate completion rate
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="assignment_completion"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="exam_anxiety">
+                                    Exam anxiety
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="exam_anxiety"
+                                        name="exam_anxiety"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-output="examAnxietyOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0
+                                        </span>
+
+                                        <output
+                                            id="examAnxietyOutput"
+                                        >
+                                            5
+                                        </output>
+
+                                        <span>
+                                            10
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="exam_anxiety"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         STEP 3 — Lifestyle
+                    ======================================= -->
+
+                    <section
+                        class="assessment-step"
+                        data-step="3"
+                    >
+
+                        <div class="step-header">
+
+                            <div class="step-index">
+                                03
+                            </div>
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    LIFESTYLE SIGNALS
+                                </span>
+
+                                <h2>
+                                    Sleep, activity & daily behavior
+                                </h2>
+
+                                <p>
+                                    Provide approximate daily averages where
+                                    applicable.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid form-grid-two">
+
+                            <div class="form-field">
+
+                                <label for="sleep_hours">
+                                    Sleep duration
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="sleep_hours"
+                                        name="sleep_hours"
+                                        min="0"
+                                        max="24"
+                                        step="0.1"
+                                        placeholder="e.g. 7"
+                                        required
+                                    >
+
+                                    <span>
+                                        hrs
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Average sleep per day
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="sleep_hours"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="sleep_quality">
+                                    Sleep quality
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="sleep_quality"
+                                        name="sleep_quality"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-output="sleepQualityOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0 — Poor
+                                        </span>
+
+                                        <output
+                                            id="sleepQualityOutput"
+                                        >
+                                            5
+                                        </output>
+
+                                        <span>
+                                            10 — Excellent
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="sleep_quality"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="physical_activity_hours">
+                                    Physical activity
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="physical_activity_hours"
+                                        name="physical_activity_hours"
+                                        min="0"
+                                        max="24"
+                                        step="0.1"
+                                        placeholder="e.g. 1"
+                                        required
+                                    >
+
+                                    <span>
+                                        hrs
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Average daily activity
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="physical_activity_hours"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="screen_time_hours">
+                                    Screen time
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="screen_time_hours"
+                                        name="screen_time_hours"
+                                        min="0"
+                                        max="24"
+                                        step="0.1"
+                                        placeholder="e.g. 6"
+                                        required
+                                    >
+
+                                    <span>
+                                        hrs
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Approximate daily screen time
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="screen_time_hours"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="social_interaction_hours">
+                                    Social interaction
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="input-with-unit">
+
+                                    <input
+                                        type="number"
+                                        id="social_interaction_hours"
+                                        name="social_interaction_hours"
+                                        min="0"
+                                        max="24"
+                                        step="0.1"
+                                        placeholder="e.g. 2"
+                                        required
+                                    >
+
+                                    <span>
+                                        hrs
+                                    </span>
+
+                                </div>
+
+                                <span class="field-help">
+                                    Average daily social interaction
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="social_interaction_hours"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="time_management">
+                                    Time management
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="time_management"
+                                        name="time_management"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-output="timeManagementOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0 — Difficult
+                                        </span>
+
+                                        <output
+                                            id="timeManagementOutput"
+                                        >
+                                            5
+                                        </output>
+
+                                        <span>
+                                            10 — Excellent
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="time_management"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="derived-preview">
+
+                            <div class="derived-preview-icon">
+                                ↗
+                            </div>
+
+                            <div>
+
+                                <span>
+                                    DERIVED FEATURES
+                                </span>
+
+                                <strong>
+                                    Study / sleep ratio + academic load
+                                </strong>
+
+                                <p>
+                                    These variables are calculated
+                                    automatically from your inputs and are
+                                    not entered manually.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         STEP 4 — Context
+                    ======================================= -->
+
+                    <section
+                        class="assessment-step"
+                        data-step="4"
+                    >
+
+                        <div class="step-header">
+
+                            <div class="step-index">
+                                04
+                            </div>
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    CONTEXTUAL SIGNALS
+                                </span>
+
+                                <h2>
+                                    Psychosocial context
+                                </h2>
+
+                                <p>
+                                    Rate the contextual factors according to
+                                    your current experience.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-grid form-grid-two">
+
+                            <div class="form-field">
+
+                                <label for="financial_stress">
+                                    Financial stress
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="financial_stress"
+                                        name="financial_stress"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-output="financialStressOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0
+                                        </span>
+
+                                        <output
+                                            id="financialStressOutput"
+                                        >
+                                            3
+                                        </output>
+
+                                        <span>
+                                            10
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="financial_stress"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="family_pressure">
+                                    Family pressure
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="family_pressure"
+                                        name="family_pressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-output="familyPressureOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0
+                                        </span>
+
+                                        <output
+                                            id="familyPressureOutput"
+                                        >
+                                            3
+                                        </output>
+
+                                        <span>
+                                            10
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="family_pressure"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="peer_pressure">
+                                    Peer pressure
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="peer_pressure"
+                                        name="peer_pressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-output="peerPressureOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0
+                                        </span>
+
+                                        <output
+                                            id="peerPressureOutput"
+                                        >
+                                            3
+                                        </output>
+
+                                        <span>
+                                            10
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="peer_pressure"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field">
+
+                                <label for="mood_score">
+                                    Current mood
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="mood_score"
+                                        name="mood_score"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="6"
+                                        data-output="moodScoreOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0 — Low
+                                        </span>
+
+                                        <output
+                                            id="moodScoreOutput"
+                                        >
+                                            6
+                                        </output>
+
+                                        <span>
+                                            10 — High
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="mood_score"
+                                ></span>
+
+                            </div>
+
+
+                            <div class="form-field form-field-full">
+
+                                <label for="self_reported_stress">
+                                    Self-reported stress
+                                    <span class="required">*</span>
+                                </label>
+
+                                <div class="range-wrapper">
+
+                                    <input
+                                        type="range"
+                                        id="self_reported_stress"
+                                        name="self_reported_stress"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-output="selfReportedStressOutput"
+                                        required
+                                    >
+
+                                    <div class="range-scale">
+                                        <span>
+                                            0 — No perceived stress
+                                        </span>
+
+                                        <output
+                                            id="selfReportedStressOutput"
+                                        >
+                                            5
+                                        </output>
+
+                                        <span>
+                                            10 — Very high
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <span class="field-help">
+                                    This is a self-reported research input,
+                                    not a clinical scale.
+                                </span>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="self_reported_stress"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="journal-section">
+
+                            <div class="journal-header">
+
+                                <div>
+
+                                    <span class="section-kicker">
+                                        OPTIONAL QUALITATIVE SIGNAL
+                                    </span>
+
+                                    <h3>
+                                        Add a journal entry
+                                    </h3>
+
+                                </div>
+
+                                <span class="optional-badge">
+                                    OPTIONAL
+                                </span>
+
+                            </div>
+
+                            <p>
+                                You may provide a short journal entry for
+                                supplementary qualitative analysis. Avoid
+                                names, contact information and other
+                                identifying details.
+                            </p>
+
+                            <textarea
+                                id="journal_text"
+                                name="journal_text"
+                                rows="7"
+                                maxlength="5000"
+                                placeholder="Example: This week I have been balancing several assignments and have found it difficult to maintain my usual sleep schedule..."
+                            ></textarea>
+
+                            <div class="textarea-footer">
+
+                                <span>
+                                    Qualitative analysis is supplementary
+                                    and non-diagnostic.
+                                </span>
+
+                                <span>
+                                    <strong id="journalCounter">
+                                        0
+                                    </strong>
+                                    / 5000
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         STEP 5 — Review & Consent
+                    ======================================= -->
+
+                    <section
+                        class="assessment-step"
+                        data-step="5"
+                    >
+
+                        <div class="step-header">
+
+                            <div class="step-index">
+                                05
+                            </div>
+
+                            <div>
+
+                                <span class="section-kicker">
+                                    REVIEW
+                                </span>
+
+                                <h2>
+                                    Review before inference
+                                </h2>
+
+                                <p>
+                                    Confirm that the information is
+                                    appropriate for research-oriented
+                                    processing.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="review-summary"
+                            id="reviewSummary"
+                        >
+
+                            <div class="review-summary-header">
+
+                                <span>
+                                    ASSESSMENT SUMMARY
+                                </span>
+
+                                <button
+                                    type="button"
+                                    class="text-button"
+                                    id="editAssessmentButton"
+                                >
+                                    Edit inputs
+                                </button>
+
+                            </div>
+
+                            <div
+                                class="review-grid"
+                                id="reviewGrid"
+                            >
+                            </div>
+
+                        </div>
+
+
+                        <div class="consent-card">
+
+                            <div class="consent-icon">
+                                ✓
+                            </div>
+
+                            <div class="consent-content">
+
+                                <h3>
+                                    Research processing consent
+                                </h3>
+
+                                <p>
+                                    I understand that StressIntel PRO is a
+                                    research-oriented system. I consent to
+                                    processing the information I provide for
+                                    the purpose of generating a model-based
+                                    stress-risk estimate and, if I provide
+                                    journal text, supplementary qualitative
+                                    analysis.
+                                </p>
+
+                                <p>
+                                    I understand that the output is not a
+                                    medical diagnosis, does not establish
+                                    causality, and should not replace
+                                    professional support.
+                                </p>
+
+                                <label class="checkbox-label">
+
+                                    <input
+                                        type="checkbox"
+                                        id="consent"
+                                        name="consent"
+                                        value="true"
+                                        required
+                                    >
+
+                                    <span class="custom-checkbox"></span>
+
+                                    <span>
+                                        I understand and consent to
+                                        research-oriented processing.
+                                    </span>
+
+                                </label>
+
+                                <span
+                                    class="field-error"
+                                    data-error-for="consent"
+                                ></span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="final-boundary-note">
+
+                            <span>
+                                RESEARCH BOUNDARY
+                            </span>
+
+                            <p>
+                                StressIntel PRO estimates a predefined
+                                stress-risk category from the trained model.
+                                Its feature contributions describe model
+                                associations, not causal effects.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         Navigation
+                    ======================================= -->
+
+                    <div class="assessment-navigation">
+
+                        <button
+                            type="button"
+                            class="button button-secondary"
+                            id="previousStepButton"
+                        >
+                            ←
+                            <span>
+                                Previous
+                            </span>
+                        </button>
+
+                        <div class="navigation-info">
+
+                            <span id="navigationStepText">
+                                Section 1 of 5
+                            </span>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            class="button button-primary"
+                            id="nextStepButton"
+                        >
+                            <span>
+                                Continue
+                            </span>
+                            →
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="button button-primary button-submit"
+                            id="submitAssessmentButton"
+                        >
+                            <span>
+                                Run Analysis
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- ======================================
+                         Form Error
+                    ======================================= -->
+
+                    <div
+                        class="form-alert"
+                        id="formAlert"
+                        role="alert"
+                        aria-live="polite"
+                        hidden
+                    >
+                        <span class="alert-icon">
+                            !
+                        </span>
+
+                        <span id="formAlertText">
+                            Please review the highlighted fields.
+                        </span>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         Footer
+    ======================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a
+                    href="/"
+                    class="brand"
+                >
+                    <span class="brand-mark">
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                    </span>
+
+                    <span class="brand-copy">
+                        <span class="brand-name">
+                            StressIntel
+                        </span>
+
+                        <span class="brand-version">
+                            PRO
+                        </span>
+                    </span>
+                </a>
+
+                <p>
+                    Research-oriented stress-risk analysis.
+                </p>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 StressIntel PRO
+                </span>
+
+                <span>
+                    Research prototype · Not a medical device
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+    defer
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/assessment.js') }}"
+    defer
+></script>
+
+</body>
+</html>

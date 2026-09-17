@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO research intelligence dashboard for stress-risk model evaluation, explainability, calibration, and reproducibility."
+    >
+
+    <title>Research Intelligence — StressIntel PRO</title>
+
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/favicon.svg') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+
+<body class="dashboard-page research-page">
+
+    <div class="app-shell">
+
+        <!-- =========================================================
+             SIDEBAR
+        ========================================================== -->
+
+        <aside class="sidebar" id="sidebar">
+
+            <div class="sidebar-brand">
+                <a href="/" class="brand-link" aria-label="StressIntel PRO home">
+                    <span class="brand-mark">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+
+                    <span class="brand-copy">
+                        <strong>StressIntel</strong>
+                        <small>PRO</small>
+                    </span>
+                </a>
+
+                <button
+                    class="sidebar-close"
+                    id="sidebarClose"
+                    type="button"
+                    aria-label="Close navigation"
+                >
+                    ×
+                </button>
+            </div>
+
+            <div class="sidebar-section">
+                <p class="sidebar-label">Platform</p>
+
+                <nav class="sidebar-nav" aria-label="Platform navigation">
+
+                    <a href="/" class="sidebar-link">
+                        <span class="sidebar-icon">⌂</span>
+                        <span>Overview</span>
+                    </a>
+
+                    <a href="/assessment" class="sidebar-link">
+                        <span class="sidebar-icon">＋</span>
+                        <span>Assessment</span>
+                    </a>
+
+                    <a href="/simulation" class="sidebar-link">
+                        <span class="sidebar-icon">◌</span>
+                        <span>Simulation</span>
+                    </a>
+
+                    <a href="/research" class="sidebar-link active">
+                        <span class="sidebar-icon">⌁</span>
+                        <span>Research</span>
+                    </a>
+
+                    <a href="/report" class="sidebar-link">
+                        <span class="sidebar-icon">▤</span>
+                        <span>Reports</span>
+                    </a>
+
+                </nav>
+            </div>
+
+            <div class="sidebar-section">
+                <p class="sidebar-label">Research modules</p>
+
+                <nav class="sidebar-nav" aria-label="Research modules">
+
+                    <button
+                        type="button"
+                        class="sidebar-link sidebar-action"
+                        data-research-target="performance"
+                    >
+                        <span class="sidebar-icon">◎</span>
+                        <span>Model Performance</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="sidebar-link sidebar-action"
+                        data-research-target="explainability"
+                    >
+                        <span class="sidebar-icon">◈</span>
+                        <span>Explainability</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="sidebar-link sidebar-action"
+                        data-research-target="calibration"
+                    >
+                        <span class="sidebar-icon">◫</span>
+                        <span>Calibration</span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="sidebar-link sidebar-action"
+                        data-research-target="reproducibility"
+                    >
+                        <span class="sidebar-icon">⌘</span>
+                        <span>Reproducibility</span>
+                    </button>
+
+                </nav>
+            </div>
+
+            <div class="sidebar-bottom">
+
+                <div class="research-status-card">
+                    <span class="status-dot"></span>
+
+                    <div>
+                        <strong>Research Mode</strong>
+                        <small>Evidence workspace</small>
+                    </div>
+                </div>
+
+                <a href="/" class="sidebar-footer-link">
+                    ← Back to platform
+                </a>
+
+            </div>
+
+        </aside>
+
+        <!-- =========================================================
+             MAIN
+        ========================================================== -->
+
+        <main class="main-content">
+
+            <header class="dashboard-header">
+
+                <div class="header-left">
+
+                    <button
+                        class="mobile-menu-button"
+                        id="sidebarOpen"
+                        type="button"
+                        aria-label="Open navigation"
+                    >
+                        ☰
+                    </button>
+
+                    <div>
+                        <div class="eyebrow">RESEARCH INTELLIGENCE</div>
+                        <h1>Evidence &amp; Model Analysis</h1>
+                        <p>
+                            A structured workspace for evaluating predictive performance,
+                            calibration, explainability and reproducibility.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="header-actions">
+
+                    <div class="system-status">
+                        <span class="status-dot"></span>
+                        <span>System operational</span>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="secondary-button"
+                        id="refreshResearch"
+                    >
+                        <span>↻</span>
+                        Refresh
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- =====================================================
+                 RESEARCH NOTICE
+            ====================================================== -->
+
+            <section class="research-notice">
+
+                <div class="notice-symbol">i</div>
+
+                <div>
+                    <strong>Research interpretation boundary</strong>
+
+                    <p>
+                        This dashboard describes model behavior and empirical
+                        evaluation results. It does not establish causal relationships,
+                        clinical diagnoses, or individual treatment recommendations.
+                    </p>
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 OVERVIEW METRICS
+            ====================================================== -->
+
+            <section class="research-section" id="performance">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">01 / PERFORMANCE</span>
+                        <h2>Model evaluation</h2>
+                        <p>
+                            Core metrics used to assess classification behavior across
+                            the three stress-risk classes.
+                        </p>
+                    </div>
+
+                    <div class="dataset-badge">
+                        <span>DATASET</span>
+                        <strong id="datasetVersion">sample-v1</strong>
+                    </div>
+
+                </div>
+
+                <div class="metric-grid">
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Accuracy</span>
+                            <span class="metric-icon">%</span>
+                        </div>
+
+                        <strong class="metric-value" id="metricAccuracy">
+                            —
+                        </strong>
+
+                        <p>
+                            Overall proportion of correctly classified observations.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Macro F1</span>
+                            <span class="metric-icon">F1</span>
+                        </div>
+
+                        <strong class="metric-value" id="metricMacroF1">
+                            —
+                        </strong>
+
+                        <p>
+                            Unweighted average of F1 across Low, Medium and High risk.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Features</span>
+                            <span class="metric-icon">21</span>
+                        </div>
+
+                        <strong class="metric-value" id="metricFeatures">
+                            21
+                        </strong>
+
+                        <p>
+                            Structured assessment variables used by the predictive
+                            pipeline.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Risk classes</span>
+                            <span class="metric-icon">3</span>
+                        </div>
+
+                        <strong class="metric-value">
+                            3
+                        </strong>
+
+                        <p>
+                            Low, Medium and High research-oriented stress-risk classes.
+                        </p>
+
+                    </article>
+
+                </div>
+
+                <!-- CLASS METRICS -->
+
+                <div class="research-card class-performance-card">
+
+                    <div class="card-heading">
+                        <div>
+                            <span class="section-kicker">PER-CLASS ANALYSIS</span>
+                            <h3>Precision &amp; recall</h3>
+                        </div>
+
+                        <span class="card-meta">Macro averaging</span>
+                    </div>
+
+                    <div class="class-table-wrapper">
+
+                        <table class="research-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Class</th>
+                                    <th>Precision</th>
+                                    <th>Recall</th>
+                                    <th>F1</th>
+                                    <th>Interpretation</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <span class="class-pill low">Low</span>
+                                    </td>
+
+                                    <td id="precisionLow">—</td>
+                                    <td id="recallLow">—</td>
+                                    <td id="f1Low">—</td>
+
+                                    <td>
+                                        Correct identification of lower-risk observations.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="class-pill medium">Medium</span>
+                                    </td>
+
+                                    <td id="precisionMedium">—</td>
+                                    <td id="recallMedium">—</td>
+                                    <td id="f1Medium">—</td>
+
+                                    <td>
+                                        Identification of intermediate-risk observations.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <span class="class-pill high">High</span>
+                                    </td>
+
+                                    <td id="precisionHigh">—</td>
+                                    <td id="recallHigh">—</td>
+                                    <td id="f1High">—</td>
+
+                                    <td>
+                                        Identification of higher-risk observations.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 CONFUSION MATRIX
+            ====================================================== -->
+
+            <section class="research-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">02 / ERROR STRUCTURE</span>
+                        <h2>Confusion matrix</h2>
+                        <p>
+                            Examine where the classifier separates or confuses
+                            neighboring risk classes.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="research-two-column">
+
+                    <div class="research-card chart-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">CLASSIFICATION</span>
+                                <h3>Observed vs predicted</h3>
+                            </div>
+
+                            <span class="card-meta">Test set</span>
+                        </div>
+
+                        <div class="confusion-matrix" id="confusionMatrix">
+
+                            <div class="cm-corner"></div>
+
+                            <div class="cm-axis-label">Predicted</div>
+
+                            <div class="cm-header">Low</div>
+                            <div class="cm-header">Medium</div>
+                            <div class="cm-header">High</div>
+
+                            <div class="cm-side-label">Low</div>
+
+                            <div class="cm-cell" data-row="low" data-col="low">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="low" data-col="medium">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="low" data-col="high">
+                                —
+                            </div>
+
+                            <div class="cm-side-label">Medium</div>
+
+                            <div class="cm-cell" data-row="medium" data-col="low">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="medium" data-col="medium">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="medium" data-col="high">
+                                —
+                            </div>
+
+                            <div class="cm-side-label">High</div>
+
+                            <div class="cm-cell" data-row="high" data-col="low">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="high" data-col="medium">
+                                —
+                            </div>
+
+                            <div class="cm-cell" data-row="high" data-col="high">
+                                —
+                            </div>
+
+                        </div>
+
+                        <div class="chart-legend">
+                            <span>
+                                <i class="legend-dot strong"></i>
+                                Correct classification
+                            </span>
+
+                            <span>
+                                <i class="legend-dot weak"></i>
+                                Classification error
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <div class="research-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">ERROR ANALYSIS</span>
+                                <h3>Research questions</h3>
+                            </div>
+                        </div>
+
+                        <div class="research-question-list">
+
+                            <div class="research-question">
+                                <span>01</span>
+                                <div>
+                                    <strong>Where do errors concentrate?</strong>
+                                    <p>
+                                        Check whether errors occur primarily between
+                                        adjacent risk classes.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="research-question">
+                                <span>02</span>
+                                <div>
+                                    <strong>Are classes balanced?</strong>
+                                    <p>
+                                        Compare class-level recall rather than relying
+                                        only on aggregate accuracy.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="research-question">
+                                <span>03</span>
+                                <div>
+                                    <strong>What should be investigated next?</strong>
+                                    <p>
+                                        Review misclassified observations and examine
+                                        missing or noisy signals.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 EXPLAINABILITY
+            ====================================================== -->
+
+            <section class="research-section" id="explainability">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">03 / EXPLAINABILITY</span>
+                        <h2>SHAP feature influence</h2>
+                        <p>
+                            Inspect which model inputs contribute most strongly to
+                            individual predictions and global model behavior.
+                        </p>
+                    </div>
+
+                    <div class="method-badge">
+                        TreeSHAP
+                    </div>
+
+                </div>
+
+                <div class="research-two-column">
+
+                    <div class="research-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">GLOBAL VIEW</span>
+                                <h3>Feature importance</h3>
+                            </div>
+
+                            <span class="card-meta">Mean |SHAP|</span>
+                        </div>
+
+                        <div
+                            class="horizontal-bars"
+                            id="globalFeatureImportance"
+                        >
+
+                            <div class="bar-row">
+                                <div class="bar-label">Awaiting evaluation</div>
+
+                                <div class="bar-track">
+                                    <div class="bar-fill" style="width: 0%"></div>
+                                </div>
+
+                                <span class="bar-value">—</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="research-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">INTERPRETATION</span>
+                                <h3>How to read SHAP</h3>
+                            </div>
+                        </div>
+
+                        <div class="interpretation-list">
+
+                            <div class="interpretation-item">
+                                <span class="interpretation-mark positive">+</span>
+
+                                <div>
+                                    <strong>Positive contribution</strong>
+
+                                    <p>
+                                        A feature pushes the model output toward
+                                        the predicted class.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="interpretation-item">
+                                <span class="interpretation-mark negative">−</span>
+
+                                <div>
+                                    <strong>Negative contribution</strong>
+
+                                    <p>
+                                        A feature pushes the model output away
+                                        from the predicted class.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="interpretation-item">
+                                <span class="interpretation-mark neutral">≈</span>
+
+                                <div>
+                                    <strong>Important limitation</strong>
+
+                                    <p>
+                                        SHAP describes model attribution, not
+                                        causal influence.
+                                    </p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 CALIBRATION
+            ====================================================== -->
+
+            <section class="research-section" id="calibration">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">04 / CALIBRATION</span>
+                        <h2>Probability reliability</h2>
+                        <p>
+                            Confidence values should be interpreted alongside
+                            calibration diagnostics and uncertainty measures.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="metric-grid calibration-grid">
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Calibration method</span>
+                            <span class="metric-icon">C</span>
+                        </div>
+
+                        <strong
+                            class="metric-value metric-value-small"
+                            id="calibrationMethod"
+                        >
+                            Pending
+                        </strong>
+
+                        <p>
+                            Probability calibration applied after base model inference.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Brier score</span>
+                            <span class="metric-icon">B</span>
+                        </div>
+
+                        <strong class="metric-value" id="brierScore">
+                            —
+                        </strong>
+
+                        <p>
+                            Lower values indicate better probabilistic accuracy.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Log loss</span>
+                            <span class="metric-icon">LL</span>
+                        </div>
+
+                        <strong class="metric-value" id="logLoss">
+                            —
+                        </strong>
+
+                        <p>
+                            Penalizes confident incorrect probability estimates.
+                        </p>
+
+                    </article>
+
+                    <article class="research-metric-card">
+
+                        <div class="metric-card-top">
+                            <span class="metric-label">Uncertainty</span>
+                            <span class="metric-icon">H</span>
+                        </div>
+
+                        <strong class="metric-value" id="entropyStatus">
+                            Tracked
+                        </strong>
+
+                        <p>
+                            Prediction entropy is retained as an uncertainty signal.
+                        </p>
+
+                    </article>
+
+                </div>
+
+                <div class="research-card calibration-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="section-kicker">RELIABILITY DIAGNOSTIC</span>
+                            <h3>Calibration profile</h3>
+                        </div>
+
+                        <span class="card-meta" id="calibrationStatus">
+                            Awaiting evaluation
+                        </span>
+
+                    </div>
+
+                    <div class="calibration-plot" id="calibrationPlot">
+
+                        <div class="plot-y-axis">
+                            <span>1.0</span>
+                            <span>0.75</span>
+                            <span>0.50</span>
+                            <span>0.25</span>
+                            <span>0.0</span>
+                        </div>
+
+                        <div class="plot-area">
+
+                            <div class="plot-grid-line line-100"></div>
+                            <div class="plot-grid-line line-75"></div>
+                            <div class="plot-grid-line line-50"></div>
+                            <div class="plot-grid-line line-25"></div>
+                            <div class="plot-grid-line line-0"></div>
+
+                            <div class="perfect-calibration-line"></div>
+
+                            <div
+                                class="calibration-points"
+                                id="calibrationPoints"
+                            ></div>
+
+                            <div class="plot-x-axis">
+                                <span>0.0</span>
+                                <span>0.25</span>
+                                <span>0.50</span>
+                                <span>0.75</span>
+                                <span>1.0</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="chart-legend calibration-legend">
+
+                        <span>
+                            <i class="legend-line"></i>
+                            Perfect calibration
+                        </span>
+
+                        <span>
+                            <i class="legend-point"></i>
+                            Empirical reliability
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 ABLATION / RESEARCH DESIGN
+            ====================================================== -->
+
+            <section class="research-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">05 / ABLATION</span>
+                        <h2>Signal-family analysis</h2>
+                        <p>
+                            Compare model configurations to determine how different
+                            signal families affect predictive behavior.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="research-card">
+
+                    <div class="ablation-table-wrapper">
+
+                        <table class="research-table ablation-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Configuration</th>
+                                    <th>Signals</th>
+                                    <th>Accuracy</th>
+                                    <th>Macro F1</th>
+                                    <th>Calibration</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <strong>Full model</strong>
+                                    </td>
+
+                                    <td>21</td>
+                                    <td data-ablation="full-accuracy">—</td>
+                                    <td data-ablation="full-f1">—</td>
+                                    <td data-ablation="full-calibration">—</td>
+
+                                    <td>
+                                        <span class="experiment-status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Academic only</strong>
+                                    </td>
+
+                                    <td>Academic</td>
+                                    <td data-ablation="academic-accuracy">—</td>
+                                    <td data-ablation="academic-f1">—</td>
+                                    <td data-ablation="academic-calibration">—</td>
+
+                                    <td>
+                                        <span class="experiment-status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Lifestyle only</strong>
+                                    </td>
+
+                                    <td>Lifestyle</td>
+                                    <td data-ablation="lifestyle-accuracy">—</td>
+                                    <td data-ablation="lifestyle-f1">—</td>
+                                    <td data-ablation="lifestyle-calibration">—</td>
+
+                                    <td>
+                                        <span class="experiment-status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <strong>Context only</strong>
+                                    </td>
+
+                                    <td>Context</td>
+                                    <td data-ablation="context-accuracy">—</td>
+                                    <td data-ablation="context-f1">—</td>
+                                    <td data-ablation="context-calibration">—</td>
+
+                                    <td>
+                                        <span class="experiment-status pending">
+                                            Pending
+                                        </span>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 REPRODUCIBILITY
+            ====================================================== -->
+
+            <section class="research-section" id="reproducibility">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">06 / REPRODUCIBILITY</span>
+                        <h2>Experiment provenance</h2>
+                        <p>
+                            The minimum metadata required to reproduce an experiment
+                            should remain explicit and auditable.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="research-two-column">
+
+                    <div class="research-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">CURRENT CONFIGURATION</span>
+                                <h3>Experiment metadata</h3>
+                            </div>
+                        </div>
+
+                        <div class="metadata-list">
+
+                            <div class="metadata-row">
+                                <span>Experiment ID</span>
+                                <strong id="experimentId">EXP-001</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Model</span>
+                                <strong id="modelName">XGBoost</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Model version</span>
+                                <strong id="modelVersion">stressintel-xgb-v1.0.0</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Dataset version</span>
+                                <strong id="researchDatasetVersion">sample-v1</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Random seed</span>
+                                <strong id="randomSeed">42</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Test size</span>
+                                <strong id="testSize">20%</strong>
+                            </div>
+
+                            <div class="metadata-row">
+                                <span>Feature count</span>
+                                <strong id="researchFeatureCount">21</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="research-card">
+
+                        <div class="card-heading">
+                            <div>
+                                <span class="section-kicker">REPRODUCIBILITY CHECK</span>
+                                <h3>Artifact status</h3>
+                            </div>
+                        </div>
+
+                        <div class="check-list">
+
+                            <div class="check-item" data-check="dataset">
+                                <span class="check-mark">✓</span>
+
+                                <div>
+                                    <strong>Dataset provenance</strong>
+                                    <p>
+                                        Dataset version and source are documented.
+                                    </p>
+                                </div>
+
+                                <span class="check-state">Tracked</span>
+                            </div>
+
+                            <div class="check-item" data-check="seed">
+                                <span class="check-mark">✓</span>
+
+                                <div>
+                                    <strong>Random seed</strong>
+                                    <p>
+                                        Seed is explicitly recorded for experiments.
+                                    </p>
+                                </div>
+
+                                <span class="check-state">42</span>
+                            </div>
+
+                            <div class="check-item" data-check="model">
+                                <span class="check-mark">✓</span>
+
+                                <div>
+                                    <strong>Model version</strong>
+                                    <p>
+                                        Model artifacts are versioned independently
+                                        from raw research data.
+                                    </p>
+                                </div>
+
+                                <span class="check-state">Tracked</span>
+                            </div>
+
+                            <div class="check-item" data-check="environment">
+                                <span class="check-mark">✓</span>
+
+                                <div>
+                                    <strong>Environment</strong>
+                                    <p>
+                                        Dependency versions are pinned in the project.
+                                    </p>
+                                </div>
+
+                                <span class="check-state">Tracked</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 JOURNAL / QUALITATIVE ANALYSIS
+            ====================================================== -->
+
+            <section class="research-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">07 / QUALITATIVE SIGNAL</span>
+                        <h2>Journal analysis protocol</h2>
+                        <p>
+                            Text analysis is treated as a complementary qualitative
+                            signal rather than a diagnostic measurement.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="research-card journal-protocol">
+
+                    <div class="protocol-grid">
+
+                        <div class="protocol-step">
+                            <span>01</span>
+
+                            <div>
+                                <strong>Input</strong>
+                                <p>
+                                    Participant-provided journal text with a maximum
+                                    length constraint.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step">
+                            <span>02</span>
+
+                            <div>
+                                <strong>Processing</strong>
+                                <p>
+                                    External LLM analysis produces structured
+                                    qualitative observations.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step">
+                            <span>03</span>
+
+                            <div>
+                                <strong>Constraints</strong>
+                                <p>
+                                    The prompt prohibits diagnosis, causality claims
+                                    and unsupported sensitive inference.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="protocol-step">
+                            <span>04</span>
+
+                            <div>
+                                <strong>Fallback</strong>
+                                <p>
+                                    The platform remains functional when the external
+                                    provider is unavailable.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="protocol-footer">
+
+                        <span>
+                            Provider/model configuration:
+                            <strong id="llmModel">Configurable</strong>
+                        </span>
+
+                        <span>
+                            Maximum text length:
+                            <strong>5,000 characters</strong>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 RESEARCH CLAIMS
+            ====================================================== -->
+
+            <section class="research-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-kicker">08 / CLAIM BOUNDARIES</span>
+                        <h2>What the platform can support</h2>
+                        <p>
+                            Research conclusions should remain bounded by the
+                            experimental design and available evidence.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="claim-grid">
+
+                    <article class="claim-card supported">
+
+                        <div class="claim-icon">✓</div>
+
+                        <span class="claim-label">SUPPORTED</span>
+
+                        <h3>Model behavior</h3>
+
+                        <p>
+                            Report predictive performance, class-level errors,
+                            probability calibration and feature attribution.
+                        </p>
+
+                    </article>
+
+                    <article class="claim-card supported">
+
+                        <div class="claim-icon">✓</div>
+
+                        <span class="claim-label">SUPPORTED</span>
+
+                        <h3>Comparative experiments</h3>
+
+                        <p>
+                            Compare feature subsets, baselines, ablations and
+                            alternative experimental configurations.
+                        </p>
+
+                    </article>
+
+                    <article class="claim-card restricted">
+
+                        <div class="claim-icon">!</div>
+
+                        <span class="claim-label">NOT ESTABLISHED</span>
+
+                        <h3>Causality</h3>
+
+                        <p>
+                            Feature attribution cannot establish that changing a
+                            feature will cause a corresponding change in stress.
+                        </p>
+
+                    </article>
+
+                    <article class="claim-card restricted">
+
+                        <div class="claim-icon">!</div>
+
+                        <span class="claim-label">OUT OF SCOPE</span>
+
+                        <h3>Clinical diagnosis</h3>
+
+                        <p>
+                            Outputs are research-oriented estimates and are not
+                            clinical diagnoses or medical decisions.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+            <!-- =====================================================
+                 FINAL RESEARCH CTA
+            ====================================================== -->
+
+            <section class="research-final-card">
+
+                <div>
+
+                    <span class="section-kicker">NEXT EXPERIMENT</span>
+
+                    <h2>
+                        Run a controlled scenario.
+                    </h2>
+
+                    <p>
+                        Use simulation to inspect how the model output changes when
+                        selected assessment inputs are modified. Treat differences
+                        as model sensitivity, not causal effects.
+                    </p>
+
+                </div>
+
+                <a href="/simulation" class="primary-button">
+                    Open simulation
+                    <span>→</span>
+                </a>
+
+            </section>
+
+            <!-- =====================================================
+                 FOOTER
+            ====================================================== -->
+
+            <footer class="dashboard-footer">
+
+                <div>
+                    <strong>StressIntel PRO</strong>
+                    <span>Research Platform v1.0.0</span>
+                </div>
+
+                <div>
+                    <span>21 structured signals</span>
+                    <span>•</span>
+                    <span>XGBoost</span>
+                    <span>•</span>
+                    <span>SHAP</span>
+                    <span>•</span>
+                    <span>Calibration</span>
+                </div>
+
+            </footer>
+
+        </main>
+
+    </div>
+
+    <!-- =============================================================
+         LOADING OVERLAY
+    ============================================================== -->
+
+    <div
+        class="loading-overlay"
+        id="researchLoading"
+        aria-hidden="true"
+    >
+
+        <div class="loading-card">
+
+            <div class="loading-spinner"></div>
+
+            <strong>Loading research data</strong>
+
+            <p>
+                Retrieving current experiment metadata and diagnostics.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- =============================================================
+         TOAST
+    ============================================================== -->
+
+    <div
+        class="toast-container"
+        id="toastContainer"
+        aria-live="polite"
+        aria-atomic="true"
+    ></div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/research.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO — Interactive stress-risk scenario simulation"
+    >
+
+    <meta name="theme-color" content="#08090d">
+
+    <title>Simulation | StressIntel PRO</title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="{{ url_for('static', filename='assets/favicon.svg') }}"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/dashboard.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ======================================================
+         Header
+    ======================================================= -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a
+                href="/"
+                class="brand"
+                aria-label="StressIntel PRO home"
+            >
+                <span class="brand-mark">
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                    <span class="brand-mark-line"></span>
+                </span>
+
+                <span class="brand-copy">
+                    <span class="brand-name">
+                        StressIntel
+                    </span>
+
+                    <span class="brand-version">
+                        PRO
+                    </span>
+                </span>
+            </a>
+
+            <nav
+                class="main-navigation"
+                aria-label="Main navigation"
+            >
+                <a
+                    href="/"
+                    class="nav-link"
+                >
+                    Platform
+                </a>
+
+                <a
+                    href="/assessment"
+                    class="nav-link"
+                >
+                    Assessment
+                </a>
+
+                <a
+                    href="/simulation"
+                    class="nav-link active"
+                >
+                    Simulation
+                </a>
+
+                <a
+                    href="/research"
+                    class="nav-link"
+                >
+                    Research
+                </a>
+            </nav>
+
+            <div class="header-actions">
+
+                <span class="system-status">
+                    <span class="status-dot"></span>
+                    Simulation Mode
+                </span>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         Main
+    ======================================================= -->
+
+    <main>
+
+        <section class="simulation-page">
+
+            <div class="simulation-container">
+
+                <!-- ==========================================
+                     Page Header
+                =========================================== -->
+
+                <div class="page-heading">
+
+                    <div>
+
+                        <div class="eyebrow">
+                            <span class="eyebrow-line"></span>
+                            Controlled Scenario Analysis
+                        </div>
+
+                        <h1>
+                            Explore model
+                            <span class="text-gradient">
+                                sensitivity
+                            </span>
+                        </h1>
+
+                        <p>
+                            Modify selected assessment inputs and observe how
+                            the trained model responds to a hypothetical
+                            scenario.
+                        </p>
+
+                    </div>
+
+                    <div class="simulation-status-card">
+
+                        <span class="status-card-label">
+                            MODE
+                        </span>
+
+                        <strong>
+                            WHAT-IF
+                        </strong>
+
+                        <span>
+                            No prediction is stored
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Causality Warning
+                =========================================== -->
+
+                <div class="results-disclaimer">
+
+                    <span class="disclaimer-icon">
+                        !
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Simulation ≠ causal intervention
+                        </strong>
+
+                        <p>
+                            Changing an input only demonstrates how the
+                            trained model responds to a hypothetical input.
+                            It does not establish that changing that factor
+                            would cause a real-world change in stress.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Simulation Workspace
+                =========================================== -->
+
+                <div class="simulation-workspace">
+
+                    <!-- ======================================
+                         Controls
+                    ======================================= -->
+
+                    <section class="simulation-controls glass-panel">
+
+                        <div class="simulation-panel-header">
+
+                            <div>
+
+                                <span class="panel-kicker">
+                                    SCENARIO CONTROLS
+                                </span>
+
+                                <h2>
+                                    Configure scenario
+                                </h2>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="text-button"
+                                id="resetSimulationButton"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+
+                        <!-- Profile -->
+
+                        <div class="simulation-group">
+
+                            <div class="simulation-group-title">
+                                <span>
+                                    01
+                                </span>
+
+                                <strong>
+                                    Profile
+                                </strong>
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simAge">
+                                    Age
+                                </label>
+
+                                <div class="simulation-input-row">
+
+                                    <input
+                                        type="number"
+                                        id="simAge"
+                                        min="13"
+                                        max="100"
+                                        step="1"
+                                        value="21"
+                                    >
+
+                                    <span>
+                                        years
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simGender">
+                                    Gender
+                                </label>
+
+                                <select id="simGender">
+
+                                    <option value="Male">
+                                        Male
+                                    </option>
+
+                                    <option value="Female">
+                                        Female
+                                    </option>
+
+                                    <option value="Non-binary">
+                                        Non-binary
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                    <option value="Prefer not to say">
+                                        Prefer not to say
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Academic -->
+
+                        <div class="simulation-group">
+
+                            <div class="simulation-group-title">
+                                <span>
+                                    02
+                                </span>
+
+                                <strong>
+                                    Academic
+                                </strong>
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simAcademicPerformance">
+                                    Academic performance
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simAcademicPerformance"
+                                        min="0"
+                                        max="100"
+                                        step="1"
+                                        value="75"
+                                        data-sim-output="simAcademicPerformanceValue"
+                                    >
+
+                                    <output
+                                        id="simAcademicPerformanceValue"
+                                    >
+                                        75
+                                    </output>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simStudyHours">
+                                    Study hours
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simStudyHours"
+                                        min="0"
+                                        max="24"
+                                        step="0.5"
+                                        value="6"
+                                        data-sim-output="simStudyHoursValue"
+                                    >
+
+                                    <output
+                                        id="simStudyHoursValue"
+                                    >
+                                        6
+                                    </output>
+
+                                    <span>
+                                        hrs/day
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simAcademicPressure">
+                                    Academic pressure
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simAcademicPressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-sim-output="simAcademicPressureValue"
+                                    >
+
+                                    <output
+                                        id="simAcademicPressureValue"
+                                    >
+                                        5
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simAttendance">
+                                    Attendance
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simAttendance"
+                                        min="0"
+                                        max="100"
+                                        step="1"
+                                        value="85"
+                                        data-sim-output="simAttendanceValue"
+                                    >
+
+                                    <output
+                                        id="simAttendanceValue"
+                                    >
+                                        85
+                                    </output>
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simAssignmentCompletion">
+                                    Assignment completion
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simAssignmentCompletion"
+                                        min="0"
+                                        max="100"
+                                        step="1"
+                                        value="80"
+                                        data-sim-output="simAssignmentCompletionValue"
+                                    >
+
+                                    <output
+                                        id="simAssignmentCompletionValue"
+                                    >
+                                        80
+                                    </output>
+
+                                    <span>
+                                        %
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simExamAnxiety">
+                                    Exam anxiety
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simExamAnxiety"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="5"
+                                        data-sim-output="simExamAnxietyValue"
+                                    >
+
+                                    <output
+                                        id="simExamAnxietyValue"
+                                    >
+                                        5
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Lifestyle -->
+
+                        <div class="simulation-group">
+
+                            <div class="simulation-group-title">
+                                <span>
+                                    03
+                                </span>
+
+                                <strong>
+                                    Lifestyle
+                                </strong>
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simSleepHours">
+                                    Sleep duration
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simSleepHours"
+                                        min="0"
+                                        max="24"
+                                        step="0.5"
+                                        value="7"
+                                        data-sim-output="simSleepHoursValue"
+                                    >
+
+                                    <output
+                                        id="simSleepHoursValue"
+                                    >
+                                        7
+                                    </output>
+
+                                    <span>
+                                        hrs/day
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simSleepQuality">
+                                    Sleep quality
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simSleepQuality"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="7"
+                                        data-sim-output="simSleepQualityValue"
+                                    >
+
+                                    <output
+                                        id="simSleepQualityValue"
+                                    >
+                                        7
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simPhysicalActivity">
+                                    Physical activity
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simPhysicalActivity"
+                                        min="0"
+                                        max="24"
+                                        step="0.5"
+                                        value="1"
+                                        data-sim-output="simPhysicalActivityValue"
+                                    >
+
+                                    <output
+                                        id="simPhysicalActivityValue"
+                                    >
+                                        1
+                                    </output>
+
+                                    <span>
+                                        hrs/day
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simScreenTime">
+                                    Screen time
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simScreenTime"
+                                        min="0"
+                                        max="24"
+                                        step="0.5"
+                                        value="6"
+                                        data-sim-output="simScreenTimeValue"
+                                    >
+
+                                    <output
+                                        id="simScreenTimeValue"
+                                    >
+                                        6
+                                    </output>
+
+                                    <span>
+                                        hrs/day
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simSocialInteraction">
+                                    Social interaction
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simSocialInteraction"
+                                        min="0"
+                                        max="24"
+                                        step="0.5"
+                                        value="2"
+                                        data-sim-output="simSocialInteractionValue"
+                                    >
+
+                                    <output
+                                        id="simSocialInteractionValue"
+                                    >
+                                        2
+                                    </output>
+
+                                    <span>
+                                        hrs/day
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simTimeManagement">
+                                    Time management
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simTimeManagement"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="7"
+                                        data-sim-output="simTimeManagementValue"
+                                    >
+
+                                    <output
+                                        id="simTimeManagementValue"
+                                    >
+                                        7
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Context -->
+
+                        <div class="simulation-group">
+
+                            <div class="simulation-group-title">
+                                <span>
+                                    04
+                                </span>
+
+                                <strong>
+                                    Context
+                                </strong>
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simFinancialStress">
+                                    Financial stress
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simFinancialStress"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-sim-output="simFinancialStressValue"
+                                    >
+
+                                    <output
+                                        id="simFinancialStressValue"
+                                    >
+                                        3
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simFamilyPressure">
+                                    Family pressure
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simFamilyPressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-sim-output="simFamilyPressureValue"
+                                    >
+
+                                    <output
+                                        id="simFamilyPressureValue"
+                                    >
+                                        3
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simPeerPressure">
+                                    Peer pressure
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simPeerPressure"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="3"
+                                        data-sim-output="simPeerPressureValue"
+                                    >
+
+                                    <output
+                                        id="simPeerPressureValue"
+                                    >
+                                        3
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simMoodScore">
+                                    Mood score
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simMoodScore"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="7"
+                                        data-sim-output="simMoodScoreValue"
+                                    >
+
+                                    <output
+                                        id="simMoodScoreValue"
+                                    >
+                                        7
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-field">
+
+                                <label for="simSelfReportedStress">
+                                    Self-reported stress
+                                </label>
+
+                                <div class="simulation-range-row">
+
+                                    <input
+                                        type="range"
+                                        id="simSelfReportedStress"
+                                        min="0"
+                                        max="10"
+                                        step="1"
+                                        value="4"
+                                        data-sim-output="simSelfReportedStressValue"
+                                    >
+
+                                    <output
+                                        id="simSelfReportedStressValue"
+                                    >
+                                        4
+                                    </output>
+
+                                    <span>
+                                        / 10
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="button button-primary button-large simulation-run-button"
+                            id="runSimulationButton"
+                        >
+                            <span>
+                                Run Scenario
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+                        </button>
+
+                    </section>
+
+
+                    <!-- ======================================
+                         Results
+                    ======================================= -->
+
+                    <section class="simulation-results">
+
+                        <div class="simulation-result-card glass-panel">
+
+                            <div class="simulation-panel-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        SCENARIO OUTPUT
+                                    </span>
+
+                                    <h2>
+                                        Model response
+                                    </h2>
+
+                                </div>
+
+                                <span
+                                    class="simulation-run-status"
+                                    id="simulationRunStatus"
+                                >
+                                    Ready
+                                </span>
+
+                            </div>
+
+
+                            <div class="simulation-result-main">
+
+                                <div
+                                    class="simulation-risk-orbit"
+                                    id="simulationRiskOrbit"
+                                >
+
+                                    <div>
+
+                                        <span
+                                            id="simulationRiskLabel"
+                                        >
+                                            —
+                                        </span>
+
+                                        <small>
+                                            RISK
+                                        </small>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="simulation-result-copy">
+
+                                    <span class="panel-kicker">
+                                        PREDICTED CLASS
+                                    </span>
+
+                                    <h3
+                                        id="simulationPredictedClass"
+                                    >
+                                        Run a scenario
+                                    </h3>
+
+                                    <p
+                                        id="simulationInterpretation"
+                                    >
+                                        Adjust the controls and run the
+                                        scenario to generate a model output.
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-confidence">
+
+                                <div class="simulation-confidence-header">
+
+                                    <span>
+                                        Confidence
+                                    </span>
+
+                                    <strong
+                                        id="simulationConfidence"
+                                    >
+                                        —
+                                    </strong>
+
+                                </div>
+
+                                <div class="confidence-track">
+
+                                    <div
+                                        class="confidence-bar"
+                                        id="simulationConfidenceBar"
+                                        style="width: 0%;"
+                                    ></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Probability -->
+
+                        <div class="simulation-result-card glass-panel">
+
+                            <div class="simulation-panel-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        PROBABILITY PROFILE
+                                    </span>
+
+                                    <h2>
+                                        Class probabilities
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="simulation-probabilities">
+
+                                <div class="simulation-probability-row">
+
+                                    <div>
+                                        <span class="risk-dot risk-low"></span>
+                                        Low
+                                    </div>
+
+                                    <div class="probability-track">
+
+                                        <div
+                                            class="probability-fill risk-low-fill"
+                                            id="simLowProbabilityBar"
+                                            style="width: 0%;"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="simLowProbability">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="simulation-probability-row">
+
+                                    <div>
+                                        <span class="risk-dot risk-medium"></span>
+                                        Medium
+                                    </div>
+
+                                    <div class="probability-track">
+
+                                        <div
+                                            class="probability-fill risk-medium-fill"
+                                            id="simMediumProbabilityBar"
+                                            style="width: 0%;"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="simMediumProbability">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="simulation-probability-row">
+
+                                    <div>
+                                        <span class="risk-dot risk-high"></span>
+                                        High
+                                    </div>
+
+                                    <div class="probability-track">
+
+                                        <div
+                                            class="probability-fill risk-high-fill"
+                                            id="simHighProbabilityBar"
+                                            style="width: 0%;"
+                                        ></div>
+
+                                    </div>
+
+                                    <strong id="simHighProbability">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             Derived Features
+                        =================================== -->
+
+                        <div class="simulation-result-card glass-panel">
+
+                            <div class="simulation-panel-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        ENGINEERED SIGNALS
+                                    </span>
+
+                                    <h2>
+                                        Derived features
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="derived-feature-grid">
+
+                                <div class="derived-feature">
+
+                                    <span>
+                                        STUDY / SLEEP RATIO
+                                    </span>
+
+                                    <strong id="simulationStudySleepRatio">
+                                        —
+                                    </strong>
+
+                                    <small>
+                                        study hours ÷ sleep hours
+                                    </small>
+
+                                </div>
+
+
+                                <div class="derived-feature">
+
+                                    <span>
+                                        ACADEMIC LOAD INDEX
+                                    </span>
+
+                                    <strong id="simulationAcademicLoad">
+                                        —
+                                    </strong>
+
+                                    <small>
+                                        bounded composite model input
+                                    </small>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ==================================
+                             Scenario Delta
+                        =================================== -->
+
+                        <div class="simulation-result-card glass-panel">
+
+                            <div class="simulation-panel-header">
+
+                                <div>
+
+                                    <span class="panel-kicker">
+                                        SCENARIO RECORD
+                                    </span>
+
+                                    <h2>
+                                        Current configuration
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div
+                                class="scenario-record"
+                                id="scenarioRecord"
+                            >
+
+                                <div class="scenario-record-empty">
+                                    <span>
+                                        —
+                                    </span>
+
+                                    <p>
+                                        Run a scenario to record the
+                                        configuration used for inference.
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- ==========================================
+                     Research Interpretation
+                =========================================== -->
+
+                <section class="simulation-research-note">
+
+                    <div class="research-note-icon">
+                        i
+                    </div>
+
+                    <div>
+
+                        <span class="section-kicker">
+                            RESEARCH INTERPRETATION
+                        </span>
+
+                        <h2>
+                            What this simulation can tell you
+                        </h2>
+
+                        <p>
+                            Scenario analysis can reveal how the trained
+                            model's prediction changes when inputs are
+                            perturbed. This can support sensitivity analysis
+                            and model-behavior research.
+                        </p>
+
+                        <p>
+                            It cannot demonstrate that an intervention on a
+                            real student would produce the simulated outcome.
+                            Observational model associations should not be
+                            converted into causal claims.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Quick Scenarios
+                =========================================== -->
+
+                <section class="quick-scenarios-section">
+
+                    <div class="section-heading compact">
+
+                        <div>
+
+                            <span class="section-kicker">
+                                EXPLORATION PRESETS
+                            </span>
+
+                            <h2>
+                                Example scenarios
+                            </h2>
+
+                        </div>
+
+                        <p>
+                            Presets are synthetic configurations for model
+                            behavior exploration.
+                        </p>
+
+                    </div>
+
+
+                    <div class="quick-scenario-grid">
+
+                        <button
+                            type="button"
+                            class="quick-scenario"
+                            data-scenario="balanced"
+                        >
+
+                            <span class="quick-scenario-index">
+                                01
+                            </span>
+
+                            <strong>
+                                Balanced routine
+                            </strong>
+
+                            <span>
+                                Moderate workload with stable lifestyle
+                                signals.
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="quick-scenario"
+                            data-scenario="academic"
+                        >
+
+                            <span class="quick-scenario-index">
+                                02
+                            </span>
+
+                            <strong>
+                                Academic load
+                            </strong>
+
+                            <span>
+                                Increased study demands and academic
+                                pressure.
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="quick-scenario"
+                            data-scenario="lifestyle"
+                        >
+
+                            <span class="quick-scenario-index">
+                                03
+                            </span>
+
+                            <strong>
+                                Lifestyle disruption
+                            </strong>
+
+                            <span>
+                                Reduced sleep and increased screen time.
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="quick-scenario"
+                            data-scenario="context"
+                        >
+
+                            <span class="quick-scenario-index">
+                                04
+                            </span>
+
+                            <strong>
+                                Context pressure
+                            </strong>
+
+                            <span>
+                                Increased psychosocial pressure signals.
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==========================================
+                     Final Disclaimer
+                =========================================== -->
+
+                <div class="results-final-disclaimer">
+
+                    <span>
+                        RESEARCH BOUNDARY
+                    </span>
+
+                    <p>
+                        Scenario results are hypothetical model outputs.
+                        They describe sensitivity of the trained model to
+                        input configurations and do not establish causal
+                        effects, individual future outcomes or clinical
+                        conclusions.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ======================================================
+         Footer
+    ======================================================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a
+                    href="/"
+                    class="brand"
+                >
+                    <span class="brand-mark">
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                        <span class="brand-mark-line"></span>
+                    </span>
+
+                    <span class="brand-copy">
+                        <span class="brand-name">
+                            StressIntel
+                        </span>
+
+                        <span class="brand-version">
+                            PRO
+                        </span>
+                    </span>
+                </a>
+
+                <p>
+                    Controlled scenario analysis for research.
+                </p>
+
+            </div>
+
+            <div class="footer-bottom">
+
+                <span>
+                    © 2026 StressIntel PRO
+                </span>
+
+                <span>
+                    Research prototype · Not a medical device
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- ==========================================================
+     Loading Overlay
+=========================================================== -->
+
+<div
+    class="loading-overlay"
+    id="simulationLoadingOverlay"
+    hidden
+    aria-live="polite"
+>
+
+    <div class="loading-card">
+
+        <div class="loading-spinner"></div>
+
+        <strong>
+            Running scenario
+        </strong>
+
+        <span>
+            Processing the configured model input...
+        </span>
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='js/app.js') }}"
+    defer
+></script>
+
+<script
+    src="{{ url_for('static', filename='js/simulation.js') }}"
+    defer
+></script>
+
+</body>
+</html>

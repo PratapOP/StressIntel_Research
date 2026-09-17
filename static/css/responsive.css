@@ -1,0 +1,732 @@
+/* ============================================================
+   STRESSINTEL PRO
+   Global Responsive Layer
+   ============================================================ */
+
+/* ============================================================
+   LARGE DESKTOP
+   ============================================================ */
+
+@media (max-width: 1280px) {
+
+    .container {
+        width: min(calc(100% - 36px), 1180px);
+    }
+
+    .hero-grid {
+        gap: 45px;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.8rem, 5.4vw, 5rem);
+    }
+
+    .signal-orbit {
+        width: min(450px, 100%);
+    }
+
+    .main-content {
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+}
+
+/* ============================================================
+   TABLET / SMALL LAPTOP
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+    .site-nav {
+        gap: 18px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .hero-copy {
+        max-width: 850px;
+    }
+
+    .hero-visual {
+        width: min(600px, 100%);
+        min-height: 500px;
+        margin-inline: auto;
+    }
+
+    .capability-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .capability-card:last-child {
+        grid-column: 1 / -1;
+    }
+
+    .signal-family-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .research-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .research-panel-copy {
+        border-right: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .research-panel-data {
+        min-height: 340px;
+    }
+
+    .method-flow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .method-step:nth-child(3) {
+        border-right: 1px solid var(--border);
+    }
+
+    .method-step:nth-child(4),
+    .method-step:nth-child(5) {
+        border-top: 0;
+    }
+
+    .method-step:nth-child(4) {
+        border-left: 1px solid var(--border);
+    }
+
+    .method-arrow {
+        display: none;
+    }
+
+    .boundary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-cta {
+        padding: 55px 35px;
+    }
+}
+
+/* ============================================================
+   NAVIGATION TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .site-header-inner {
+        min-height: 68px;
+    }
+
+    .site-nav {
+        position: fixed;
+        top: 68px;
+        right: 15px;
+        left: 15px;
+        z-index: 200;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px;
+        border: 1px solid var(--border);
+        border-radius: 13px;
+        background: rgba(12, 14, 20, 0.98);
+        box-shadow: var(--shadow-lg);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+    }
+
+    .site-nav.open {
+        display: flex;
+    }
+
+    .site-nav a {
+        display: block;
+        padding: 12px 13px;
+        border-radius: 8px;
+    }
+
+    .site-nav a:hover {
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .site-nav a::after {
+        display: none;
+    }
+
+    .mobile-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        color: var(--text-secondary);
+        background: rgba(255, 255, 255, 0.03);
+        cursor: pointer;
+    }
+
+    .hero-section {
+        min-height: auto;
+        padding: 90px 0 75px;
+    }
+
+    .hero-copy > p {
+        max-width: 720px;
+    }
+
+    .section {
+        padding: 85px 0;
+    }
+
+    .section-header {
+        display: block;
+        margin-bottom: 38px;
+    }
+
+    .section-header > * + * {
+        margin-top: 18px;
+    }
+
+    .diagnostic-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* ============================================================
+   TABLET PORTRAIT
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+    .container {
+        width: min(calc(100% - 30px), 680px);
+    }
+
+    .site-header-inner {
+        width: min(calc(100% - 30px), var(--container));
+    }
+
+    .site-header .header-actions .system-status {
+        display: none;
+    }
+
+    .hero-copy h1 {
+        font-size: clamp(2.5rem, 10vw, 4.4rem);
+    }
+
+    .hero-copy > p {
+        font-size: 0.92rem;
+        line-height: 1.75;
+    }
+
+    .hero-visual {
+        min-height: 430px;
+    }
+
+    .signal-orbit {
+        width: min(420px, 100%);
+    }
+
+    .signal-core {
+        width: 175px;
+        height: 175px;
+    }
+
+    .signal-core strong {
+        font-size: 1.2rem;
+    }
+
+    .signal-node {
+        width: 56px;
+        height: 56px;
+        border-radius: 15px;
+    }
+
+    .capability-grid,
+    .signal-family-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .capability-card:last-child {
+        grid-column: auto;
+    }
+
+    .capability-card {
+        min-height: 230px;
+    }
+
+    .method-flow {
+        grid-template-columns: 1fr;
+    }
+
+    .method-step {
+        border-right: 1px solid var(--border);
+        border-top: 0;
+    }
+
+    .method-step:first-child {
+        border-top: 1px solid var(--border);
+    }
+
+    .method-step:nth-child(3),
+    .method-step:nth-child(4),
+    .method-step:nth-child(5) {
+        border-top: 0;
+    }
+
+    .method-step {
+        min-height: 150px;
+    }
+
+    .research-panel-copy,
+    .research-panel-data {
+        padding: 30px;
+    }
+
+    .data-row {
+        grid-template-columns: 100px minmax(0, 1fr) 45px;
+    }
+
+    .boundary-card {
+        padding: 21px;
+    }
+
+    .final-cta {
+        padding: 45px 25px;
+    }
+
+    .site-footer-inner {
+        display: grid;
+        gap: 16px;
+    }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+    html {
+        font-size: 15px;
+    }
+
+    .container {
+        width: min(calc(100% - 26px), 570px);
+    }
+
+    .site-header-inner {
+        width: min(calc(100% - 26px), var(--container));
+        min-height: 64px;
+    }
+
+    .brand-copy strong {
+        font-size: 0.9rem;
+    }
+
+    .header-actions .primary-button {
+        min-height: 39px;
+        padding: 0 12px;
+        font-size: 0.7rem;
+    }
+
+    .mobile-nav-toggle {
+        width: 37px;
+        height: 37px;
+    }
+
+    .site-nav {
+        top: 64px;
+        right: 13px;
+        left: 13px;
+    }
+
+    .hero-section {
+        padding: 70px 0 60px;
+    }
+
+    .hero-copy .eyebrow {
+        margin-bottom: 19px;
+    }
+
+    .hero-copy h1 {
+        margin-bottom: 19px;
+        font-size: clamp(2.35rem, 12vw, 3.7rem);
+    }
+
+    .hero-copy > p {
+        margin-bottom: 25px;
+        font-size: 0.82rem;
+    }
+
+    .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions > * {
+        width: 100%;
+    }
+
+    .hero-proof {
+        display: grid;
+        gap: 11px;
+        margin-top: 26px;
+    }
+
+    .hero-visual {
+        min-height: 340px;
+    }
+
+    .signal-orbit {
+        width: min(330px, 100%);
+    }
+
+    .signal-core {
+        width: 145px;
+        height: 145px;
+        padding: 17px;
+    }
+
+    .signal-core .core-label {
+        font-size: 0.5rem;
+    }
+
+    .signal-core strong {
+        font-size: 1rem;
+    }
+
+    .signal-core small {
+        margin-top: 5px;
+        font-size: 0.56rem;
+    }
+
+    .signal-node {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+    }
+
+    .signal-node span {
+        font-size: 0.5rem;
+    }
+
+    .section {
+        padding: 65px 0;
+    }
+
+    .section-header {
+        margin-bottom: 30px;
+    }
+
+    .section-header-copy h2 {
+        font-size: 1.9rem;
+    }
+
+    .section-header-copy p {
+        font-size: 0.78rem;
+    }
+
+    .capability-card {
+        min-height: 215px;
+        padding: 22px;
+    }
+
+    .capability-number {
+        margin-bottom: 30px;
+    }
+
+    .research-panel-copy,
+    .research-panel-data {
+        padding: 23px;
+    }
+
+    .research-panel-copy h2 {
+        font-size: 1.8rem;
+    }
+
+    .research-panel-data {
+        min-height: 300px;
+    }
+
+    .data-row {
+        grid-template-columns: 82px minmax(0, 1fr) 38px;
+        gap: 8px;
+    }
+
+    .data-row-label {
+        font-size: 0.58rem;
+    }
+
+    .data-row-value {
+        font-size: 0.53rem;
+    }
+
+    .boundary-card {
+        display: grid;
+        grid-template-columns: 40px 1fr;
+        gap: 13px;
+    }
+
+    .final-cta {
+        padding: 35px 20px;
+    }
+
+    .final-cta h2 {
+        font-size: 1.8rem;
+    }
+
+    .final-cta p {
+        font-size: 0.75rem;
+    }
+
+    .site-footer {
+        padding: 25px 0;
+    }
+
+    .footer-meta {
+        font-size: 0.61rem;
+    }
+}
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 430px) {
+
+    .container {
+        width: min(calc(100% - 22px), 408px);
+    }
+
+    .site-header-inner {
+        width: min(calc(100% - 22px), var(--container));
+    }
+
+    .brand-mark {
+        width: 27px;
+        height: 27px;
+    }
+
+    .brand-copy strong {
+        font-size: 0.82rem;
+    }
+
+    .brand-copy small {
+        font-size: 0.52rem;
+    }
+
+    .header-actions .primary-button {
+        display: none;
+    }
+
+    .hero-copy h1 {
+        font-size: 2.3rem;
+    }
+
+    .hero-copy > p {
+        font-size: 0.77rem;
+    }
+
+    .hero-visual {
+        min-height: 290px;
+    }
+
+    .signal-orbit {
+        width: 280px;
+    }
+
+    .signal-core {
+        width: 122px;
+        height: 122px;
+    }
+
+    .signal-core strong {
+        font-size: 0.87rem;
+    }
+
+    .signal-node {
+        width: 39px;
+        height: 39px;
+    }
+
+    .signal-node span {
+        font-size: 0.43rem;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .section-header-copy h2 {
+        font-size: 1.7rem;
+    }
+
+    .method-step {
+        padding: 21px;
+    }
+
+    .research-panel-copy,
+    .research-panel-data {
+        padding: 20px;
+    }
+
+    .data-row {
+        grid-template-columns: 72px minmax(0, 1fr) 34px;
+    }
+
+    .data-row-label {
+        font-size: 0.52rem;
+    }
+
+    .final-cta {
+        padding: 30px 17px;
+        border-radius: 18px;
+    }
+
+    .final-cta h2 {
+        font-size: 1.65rem;
+    }
+}
+
+/* ============================================================
+   LANDSCAPE MOBILE
+   ============================================================ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+    .hero-section {
+        padding-top: 55px;
+        padding-bottom: 45px;
+    }
+
+    .hero-visual {
+        min-height: 300px;
+    }
+
+    .signal-orbit {
+        width: 280px;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+}
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+    .capability-card:hover,
+    .secondary-button:hover,
+    .primary-button:hover {
+        transform: none;
+    }
+
+    .sidebar-link,
+    .site-nav a,
+    button,
+    input,
+    select,
+    textarea {
+        touch-action: manipulation;
+    }
+
+    .sidebar-link {
+        min-height: 44px;
+    }
+
+    .primary-button,
+    .secondary-button,
+    .ghost-button {
+        min-height: 46px;
+    }
+}
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+@media (prefers-contrast: more) {
+
+    :root {
+        --border: rgba(255, 255, 255, 0.18);
+        --border-strong: rgba(255, 255, 255, 0.28);
+        --text-secondary: #c8cdd7;
+        --text-muted: #9299a8;
+    }
+
+    .form-control,
+    .form-select,
+    .form-textarea {
+        border-color: var(--border-strong);
+    }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .signal-orbit,
+    .orbit-ring {
+        animation: none !important;
+    }
+
+    .hero-section,
+    .section,
+    .capability-card,
+    .method-step,
+    .research-card {
+        scroll-margin-top: 20px;
+    }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+
+    @page {
+        margin: 14mm;
+    }
+
+    .mobile-nav-toggle,
+    .sidebar,
+    .sidebar-close,
+    .mobile-menu-button,
+    .header-actions,
+    .report-actions {
+        display: none !important;
+    }
+
+    .main-content {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .dashboard-page .main-content > * {
+        width: 100% !important;
+    }
+
+    .research-section {
+        margin-bottom: 25px;
+    }
+
+    .research-card,
+    .research-metric-card,
+    .report-risk-card {
+        break-inside: avoid;
+    }
+}

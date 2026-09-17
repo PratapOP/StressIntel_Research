@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="StressIntel PRO research assessment report."
+    >
+
+    <title>Research Report — StressIntel PRO</title>
+
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/favicon.svg') }}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+
+<body class="dashboard-page report-page">
+
+<div class="app-shell">
+
+    <!-- =========================================================
+         SIDEBAR
+    ========================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="sidebar-brand">
+
+            <a href="/" class="brand-link" aria-label="StressIntel PRO home">
+
+                <span class="brand-mark">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+
+                <span class="brand-copy">
+                    <strong>StressIntel</strong>
+                    <small>PRO</small>
+                </span>
+
+            </a>
+
+            <button
+                class="sidebar-close"
+                id="sidebarClose"
+                type="button"
+                aria-label="Close navigation"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div class="sidebar-section">
+
+            <p class="sidebar-label">Platform</p>
+
+            <nav class="sidebar-nav" aria-label="Platform navigation">
+
+                <a href="/" class="sidebar-link">
+                    <span class="sidebar-icon">⌂</span>
+                    <span>Overview</span>
+                </a>
+
+                <a href="/assessment" class="sidebar-link">
+                    <span class="sidebar-icon">＋</span>
+                    <span>Assessment</span>
+                </a>
+
+                <a href="/simulation" class="sidebar-link">
+                    <span class="sidebar-icon">◌</span>
+                    <span>Simulation</span>
+                </a>
+
+                <a href="/research" class="sidebar-link">
+                    <span class="sidebar-icon">⌁</span>
+                    <span>Research</span>
+                </a>
+
+                <a href="/report" class="sidebar-link active">
+                    <span class="sidebar-icon">▤</span>
+                    <span>Reports</span>
+                </a>
+
+            </nav>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="research-status-card">
+
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>Research Mode</strong>
+                    <small>Report workspace</small>
+                </div>
+
+            </div>
+
+            <a href="/" class="sidebar-footer-link">
+                ← Back to platform
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- =========================================================
+         MAIN
+    ========================================================== -->
+
+    <main class="main-content">
+
+        <header class="dashboard-header">
+
+            <div class="header-left">
+
+                <button
+                    class="mobile-menu-button"
+                    id="sidebarOpen"
+                    type="button"
+                    aria-label="Open navigation"
+                >
+                    ☰
+                </button>
+
+                <div>
+
+                    <div class="eyebrow">RESEARCH REPORT</div>
+
+                    <h1>Assessment Findings</h1>
+
+                    <p>
+                        Structured interpretation of model output, feature influence,
+                        uncertainty and qualitative analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="header-actions">
+
+                <div class="system-status">
+                    <span class="status-dot"></span>
+                    <span>Report ready</span>
+                </div>
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="printReport"
+                >
+                    <span>⎙</span>
+                    Print
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- =====================================================
+             REPORT HEADER
+        ====================================================== -->
+
+        <section class="report-hero">
+
+            <div class="report-hero-content">
+
+                <span class="section-kicker">STRESSINTEL PRO / ANALYSIS</span>
+
+                <h2>
+                    Research-oriented
+                    <span>stress-risk report.</span>
+                </h2>
+
+                <p>
+                    This report consolidates the predictive model result,
+                    uncertainty indicators, SHAP attribution and optional
+                    qualitative journal analysis into one reproducible artifact.
+                </p>
+
+            </div>
+
+            <div class="report-meta-box">
+
+                <div class="report-meta-row">
+                    <span>Generated</span>
+                    <strong id="reportGeneratedAt">—</strong>
+                </div>
+
+                <div class="report-meta-row">
+                    <span>Model</span>
+                    <strong id="reportModel">XGBoost</strong>
+                </div>
+
+                <div class="report-meta-row">
+                    <span>Version</span>
+                    <strong id="reportModelVersion">—</strong>
+                </div>
+
+                <div class="report-meta-row">
+                    <span>Report ID</span>
+                    <strong id="reportId">—</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             DISCLAIMER
+        ====================================================== -->
+
+        <section class="research-notice">
+
+            <div class="notice-symbol">!</div>
+
+            <div>
+
+                <strong>Interpretation boundary</strong>
+
+                <p>
+                    This report contains research-oriented model estimates.
+                    It is not a medical diagnosis and should not be used as a
+                    substitute for professional assessment. Model attribution
+                    represents statistical/model behavior and does not establish
+                    causality.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             PREDICTION
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">01 / PREDICTION</span>
+
+                    <h2>Model output</h2>
+
+                    <p>
+                        Predicted risk class and associated probability distribution.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="report-prediction-grid">
+
+                <article class="report-risk-card">
+
+                    <div class="risk-card-header">
+
+                        <span class="section-kicker">PREDICTED CLASS</span>
+
+                        <span
+                            class="risk-indicator"
+                            id="reportRiskIndicator"
+                        ></span>
+
+                    </div>
+
+                    <div class="report-risk-level" id="reportRiskLevel">
+                        Pending
+                    </div>
+
+                    <p id="reportRiskDescription">
+                        Complete an assessment to generate a report.
+                    </p>
+
+                    <div class="report-confidence">
+
+                        <div class="confidence-header">
+                            <span>Model confidence</span>
+                            <strong id="reportConfidence">—</strong>
+                        </div>
+
+                        <div class="confidence-track">
+
+                            <div
+                                class="confidence-fill"
+                                id="reportConfidenceFill"
+                                style="width: 0%"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+                <article class="research-card probability-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="section-kicker">PROBABILITY PROFILE</span>
+                            <h3>Class probabilities</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="report-probabilities">
+
+                        <div class="report-probability-row">
+
+                            <div class="probability-label">
+                                <span class="class-pill low">Low</span>
+                                <strong id="reportProbabilityLow">—</strong>
+                            </div>
+
+                            <div class="probability-track">
+                                <div
+                                    class="probability-fill low"
+                                    id="reportProbabilityLowBar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                        <div class="report-probability-row">
+
+                            <div class="probability-label">
+                                <span class="class-pill medium">Medium</span>
+                                <strong id="reportProbabilityMedium">—</strong>
+                            </div>
+
+                            <div class="probability-track">
+                                <div
+                                    class="probability-fill medium"
+                                    id="reportProbabilityMediumBar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                        <div class="report-probability-row">
+
+                            <div class="probability-label">
+                                <span class="class-pill high">High</span>
+                                <strong id="reportProbabilityHigh">—</strong>
+                            </div>
+
+                            <div class="probability-track">
+                                <div
+                                    class="probability-fill high"
+                                    id="reportProbabilityHighBar"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             UNCERTAINTY
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">02 / UNCERTAINTY</span>
+
+                    <h2>Prediction reliability</h2>
+
+                    <p>
+                        Confidence should be interpreted together with probability
+                        dispersion and model uncertainty.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="metric-grid">
+
+                <article class="research-metric-card">
+
+                    <div class="metric-card-top">
+                        <span class="metric-label">Confidence</span>
+                        <span class="metric-icon">%</span>
+                    </div>
+
+                    <strong
+                        class="metric-value"
+                        id="reportMetricConfidence"
+                    >
+                        —
+                    </strong>
+
+                    <p>
+                        Highest class probability returned by the inference pipeline.
+                    </p>
+
+                </article>
+
+                <article class="research-metric-card">
+
+                    <div class="metric-card-top">
+                        <span class="metric-label">Entropy</span>
+                        <span class="metric-icon">H</span>
+                    </div>
+
+                    <strong
+                        class="metric-value"
+                        id="reportMetricEntropy"
+                    >
+                        —
+                    </strong>
+
+                    <p>
+                        Higher entropy indicates a more distributed probability profile.
+                    </p>
+
+                </article>
+
+                <article class="research-metric-card">
+
+                    <div class="metric-card-top">
+                        <span class="metric-label">Class index</span>
+                        <span class="metric-icon">ID</span>
+                    </div>
+
+                    <strong
+                        class="metric-value"
+                        id="reportMetricClassIndex"
+                    >
+                        —
+                    </strong>
+
+                    <p>
+                        Encoded model class corresponding to the predicted category.
+                    </p>
+
+                </article>
+
+                <article class="research-metric-card">
+
+                    <div class="metric-card-top">
+                        <span class="metric-label">Calibration</span>
+                        <span class="metric-icon">C</span>
+                    </div>
+
+                    <strong
+                        class="metric-value metric-value-small"
+                        id="reportMetricCalibration"
+                    >
+                        —
+                    </strong>
+
+                    <p>
+                        Probability calibration configuration associated with inference.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             SHAP
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">03 / EXPLAINABILITY</span>
+
+                    <h2>Feature attribution</h2>
+
+                    <p>
+                        SHAP values identify which model inputs contributed to the
+                        current prediction.
+                    </p>
+
+                </div>
+
+                <span class="method-badge">
+                    TreeSHAP
+                </span>
+
+            </div>
+
+            <div class="research-two-column">
+
+                <div class="research-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="section-kicker">RISK DRIVERS</span>
+                            <h3>Features pushing toward prediction</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="report-feature-list"
+                        id="reportRiskDrivers"
+                    >
+
+                        <div class="empty-state">
+                            <span>—</span>
+                            <strong>No attribution available</strong>
+                            <p>
+                                Run an assessment to populate feature contributions.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="research-card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span class="section-kicker">PROTECTIVE / OPPOSING</span>
+                            <h3>Features opposing prediction</h3>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="report-feature-list"
+                        id="reportProtectiveFactors"
+                    >
+
+                        <div class="empty-state">
+                            <span>—</span>
+                            <strong>No attribution available</strong>
+                            <p>
+                                Run an assessment to populate feature contributions.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="research-card report-shap-table-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <span class="section-kicker">LOCAL ATTRIBUTION</span>
+                        <h3>Complete feature contribution table</h3>
+                    </div>
+
+                    <span class="card-meta">
+                        Model attribution
+                    </span>
+
+                </div>
+
+                <div class="class-table-wrapper">
+
+                    <table class="research-table">
+
+                        <thead>
+
+                            <tr>
+                                <th>Feature</th>
+                                <th>Value</th>
+                                <th>SHAP contribution</th>
+                                <th>Direction</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="reportShapTable">
+
+                            <tr>
+                                <td colspan="4" class="table-empty">
+                                    No feature attribution available.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             JOURNAL
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">04 / QUALITATIVE ANALYSIS</span>
+
+                    <h2>Journal interpretation</h2>
+
+                    <p>
+                        Optional LLM-assisted analysis of participant-provided
+                        journal text.
+                    </p>
+
+                </div>
+
+                <span class="method-badge">
+                    GROQ / LLM
+                </span>
+
+            </div>
+
+            <div class="research-card journal-report-card">
+
+                <div
+                    class="journal-analysis-status"
+                    id="journalAnalysisStatus"
+                >
+                    <span class="status-dot"></span>
+                    Awaiting journal analysis
+                </div>
+
+                <div class="journal-summary-grid">
+
+                    <div class="journal-summary-item">
+
+                        <span>Sentiment</span>
+
+                        <strong id="journalSentiment">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="journal-summary-item">
+
+                        <span>Intensity</span>
+
+                        <strong id="journalIntensity">
+                            —
+                        </strong>
+
+                    </div>
+
+                    <div class="journal-summary-item">
+
+                        <span>Model</span>
+
+                        <strong id="journalModel">
+                            —
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="journal-observations">
+
+                    <div>
+
+                        <span class="section-kicker">OBSERVATIONS</span>
+
+                        <ul id="journalObservations">
+
+                            <li>
+                                No qualitative observations available.
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div>
+
+                        <span class="section-kicker">RESEARCH NOTE</span>
+
+                        <p id="journalResearchNote">
+                            Journal analysis is optional and should be interpreted
+                            as qualitative context rather than a diagnostic signal.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             RESEARCH INTERPRETATION
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">05 / INTERPRETATION</span>
+
+                    <h2>Research interpretation</h2>
+
+                    <p>
+                        A bounded summary of what can and cannot be inferred from
+                        the current model output.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="interpretation-grid">
+
+                <article class="interpretation-panel">
+
+                    <div class="panel-marker supported">✓</div>
+
+                    <div>
+
+                        <span class="section-kicker">OBSERVATION</span>
+
+                        <h3>What the model indicates</h3>
+
+                        <p id="reportModelInterpretation">
+                            The model has not yet generated an assessment result.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <article class="interpretation-panel">
+
+                    <div class="panel-marker caution">!</div>
+
+                    <div>
+
+                        <span class="section-kicker">LIMITATION</span>
+
+                        <h3>What this does not establish</h3>
+
+                        <p>
+                            The output does not establish a causal relationship
+                            between any individual feature and stress. It also
+                            does not establish a medical or psychological diagnosis.
+                        </p>
+
+                    </div>
+
+                </article>
+
+                <article class="interpretation-panel">
+
+                    <div class="panel-marker review">↗</div>
+
+                    <div>
+
+                        <span class="section-kicker">HUMAN REVIEW</span>
+
+                        <h3>Recommended research handling</h3>
+
+                        <p>
+                            Treat the prediction as one empirical observation.
+                            Review uncertainty, feature attribution, data quality
+                            and study protocol before drawing conclusions.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             INPUT SNAPSHOT
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">06 / INPUT PROVENANCE</span>
+
+                    <h2>Assessment snapshot</h2>
+
+                    <p>
+                        The structured inputs used for the reported inference.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="research-card">
+
+                <div
+                    class="input-snapshot-grid"
+                    id="reportInputSnapshot"
+                >
+
+                    <div class="snapshot-item">
+                        <span>Age</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Gender</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Academic performance</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Study hours</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Sleep hours</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Sleep quality</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Physical activity</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Screen time</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Social interaction</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Academic pressure</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Financial stress</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Family pressure</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Peer pressure</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Time management</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Attendance</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Assignment completion</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Exam anxiety</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Mood score</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item">
+                        <span>Self-reported stress</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item derived">
+                        <span>Study / sleep ratio</span>
+                        <strong>—</strong>
+                    </div>
+
+                    <div class="snapshot-item derived">
+                        <span>Academic load index</span>
+                        <strong>—</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             REPRODUCIBILITY
+        ====================================================== -->
+
+        <section class="research-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-kicker">07 / REPRODUCIBILITY</span>
+
+                    <h2>Report provenance</h2>
+
+                    <p>
+                        Metadata required to contextualize and reproduce the analysis.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="research-card">
+
+                <div class="metadata-list">
+
+                    <div class="metadata-row">
+                        <span>Report ID</span>
+                        <strong id="provenanceReportId">—</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Model</span>
+                        <strong id="provenanceModel">—</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Model version</span>
+                        <strong id="provenanceVersion">—</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Dataset version</span>
+                        <strong id="provenanceDataset">—</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Feature count</span>
+                        <strong id="provenanceFeatures">21</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Analysis type</span>
+                        <strong>Research-oriented classification</strong>
+                    </div>
+
+                    <div class="metadata-row">
+                        <span>Causal inference</span>
+                        <strong>Not performed</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             ACTIONS
+        ====================================================== -->
+
+        <section class="report-actions">
+
+            <a href="/assessment" class="secondary-button">
+                ← New assessment
+            </a>
+
+            <a href="/simulation" class="secondary-button">
+                Run simulation
+            </a>
+
+            <button
+                type="button"
+                class="primary-button"
+                id="downloadReport"
+            >
+                Generate report
+                <span>↓</span>
+            </button>
+
+        </section>
+
+        <!-- =====================================================
+             FINAL DISCLAIMER
+        ====================================================== -->
+
+        <section class="report-disclaimer">
+
+            <div class="disclaimer-symbol">
+                i
+            </div>
+
+            <div>
+
+                <strong>Research-use disclaimer</strong>
+
+                <p>
+                    StressIntel PRO is a research platform for studying
+                    stress-risk estimation and interpretable machine-learning
+                    workflows. Its outputs are not medical diagnoses,
+                    predictions of future clinical outcomes, or substitutes
+                    for professional support. Results should be evaluated in
+                    the context of the study design, dataset provenance,
+                    uncertainty and known limitations.
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
+        <footer class="dashboard-footer">
+
+            <div>
+                <strong>StressIntel PRO</strong>
+                <span>Research Platform v1.0.0</span>
+            </div>
+
+            <div>
+                <span>XGBoost</span>
+                <span>•</span>
+                <span>SHAP</span>
+                <span>•</span>
+                <span>Calibration</span>
+                <span>•</span>
+                <span>Research Analytics</span>
+            </div>
+
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- =============================================================
+     LOADING
+============================================================== -->
+
+<div
+    class="loading-overlay"
+    id="reportLoading"
+    aria-hidden="true"
+>
+
+    <div class="loading-card">
+
+        <div class="loading-spinner"></div>
+
+        <strong>Preparing report</strong>
+
+        <p>
+            Consolidating model output and research metadata.
+        </p>
+
+    </div>
+
+</div>
+
+<!-- =============================================================
+     TOAST
+============================================================== -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+    aria-live="polite"
+    aria-atomic="true"
+></div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+<script src="{{ url_for('static', filename='js/results.js') }}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const printButton = document.getElementById("printReport");
+    const downloadButton = document.getElementById("downloadReport");
+
+    if (printButton) {
+        printButton.addEventListener("click", function () {
+            window.print();
+        });
+    }
+
+    if (downloadButton) {
+        downloadButton.addEventListener("click", function () {
+            window.print();
+        });
+    }
+});
+</script>
+
+</body>
+</html>
