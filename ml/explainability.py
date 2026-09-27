@@ -9,6 +9,7 @@ import shap
 from config.settings import Config
 from ml.feature_engineering import build_feature_dataframe
 from ml.model_loader import get_model
+from ml.preprocessing import get_preprocessor
 
 
 def _clean_number(value: Any) -> float:
@@ -102,41 +103,31 @@ def explain_prediction(
 
     model = get_model()
 
-    dataframe = build_feature_dataframe(features)
+    raw_dataframe = build_feature_dataframe(features)
 
-    model_feature_names = _extract_feature_names(
-        dataframe,
-        model,
-    )
+    pre = get_preprocessor()
+    pre._ensure_loaded()
+    transformed = pre.transform(features)
 
-    if hasattr(model, "n_features_in_"):
-        expected_features = int(
-            model.n_features_in_
-        )
+    if hasattr(pre.transformer, "get_feature_names_out"):
+        raw_names = pre.transformer.get_feature_names_out()
+        feature_names = [str(name).split("__")[-1] for name in raw_names]
+    else:
+        feature_names = list(raw_dataframe.columns)
 
-        if dataframe.shape[1] != expected_features:
-            raise ValueError(
-                "Input feature count does not match the trained model."
-            )
+    df_transformed = pd.DataFrame(transformed, columns=feature_names)
 
     explainer = shap.TreeExplainer(model)
 
     shap_values, base_value = _extract_shap_values(
         explainer,
-        dataframe,
+        df_transformed,
     )
 
-    feature_names = list(dataframe.columns)
-
     if len(shap_values) != len(feature_names):
-        if len(shap_values) == len(model_feature_names):
-            feature_names = model_feature_names
-        else:
-            raise ValueError(
-                "SHAP output does not match the model feature schema."
-            )
+        feature_names = [f"Feature_{i}" for i in range(len(shap_values))]
 
-    feature_values = dataframe.iloc[0].tolist()
+    raw_values_dict = raw_dataframe.iloc[0].to_dict()
 
     contributions = []
 
@@ -145,7 +136,10 @@ def explain_prediction(
             shap_values[index]
         )
 
-        value = feature_values[index]
+        value = raw_values_dict.get(
+            feature_name,
+            transformed[0, index] if index < transformed.shape[1] else 0
+        )
 
         try:
             serialized_value = value.item()

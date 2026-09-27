@@ -4,6 +4,7 @@ from pathlib import Path
 from typing import Any
 
 import joblib
+import numpy as np
 import xgboost as xgb
 
 from config.settings import Config
@@ -64,16 +65,20 @@ class ModelLoader:
     def get_artifact_metadata(self) -> dict[str, Any]:
         model = self.get_model()
 
+        classes_raw = getattr(
+            model,
+            "classes_",
+            Config.STRESS_CLASSES
+        )
+        classes_clean = [
+            int(c) if hasattr(c, "item") or isinstance(c, (np.integer, int)) else str(c)
+            for c in classes_raw
+        ]
+
         metadata = {
             "model_version": Config.MODEL_VERSION,
             "model_type": "XGBoost",
-            "classes": list(
-                getattr(
-                    model,
-                    "classes_",
-                    Config.STRESS_CLASSES
-                )
-            ),
+            "classes": classes_clean,
         }
 
         booster = getattr(model, "get_booster", lambda: None)()

@@ -8,17 +8,21 @@
 
     const form =
         document.getElementById("simulation-form") ||
-        document.querySelector("[data-simulation-form]");
+        document.querySelector("[data-simulation-form]") ||
+        document.querySelector(".simulation-controls");
 
     const resultPanel =
         document.querySelector("[data-simulation-result]") ||
-        document.getElementById("simulation-result");
+        document.getElementById("simulation-result") ||
+        document.querySelector(".simulation-results");
 
     const runButton =
+        document.getElementById("runSimulationButton") ||
         document.querySelector("[data-run-simulation]") ||
         document.getElementById("run-simulation");
 
     const resetButton =
+        document.getElementById("resetSimulationButton") ||
         document.querySelector("[data-reset-simulation]") ||
         document.getElementById("reset-simulation");
 
@@ -260,17 +264,48 @@
        Form Serialization
        --------------------------------------------------------- */
 
+    const ID_MAP = {
+        age: "simAge",
+        gender: "simGender",
+        academic_performance: "simAcademicPerformance",
+        study_hours: "simStudyHours",
+        academic_pressure: "simAcademicPressure",
+        attendance_percentage: "simAttendance",
+        assignment_completion: "simAssignmentCompletion",
+        exam_anxiety: "simExamAnxiety",
+        sleep_hours: "simSleepHours",
+        sleep_quality: "simSleepQuality",
+        physical_activity_hours: "simPhysicalActivity",
+        screen_time_hours: "simScreenTime",
+        social_interaction_hours: "simSocialInteraction",
+        time_management: "simTimeManagement",
+        financial_stress: "simFinancialStress",
+        family_pressure: "simFamilyPressure",
+        peer_pressure: "simPeerPressure",
+        mood_score: "simMoodScore",
+        self_reported_stress: "simSelfReportedStress"
+    };
+
     function getField(name) {
-        if (!form) {
-            return null;
+        if (ID_MAP[name]) {
+            const el = document.getElementById(ID_MAP[name]);
+            if (el) {
+                return el;
+            }
         }
 
-        return (
-            form.elements[name] ||
-            form.querySelector(
-                `[name="${CSS.escape(name)}"]`
-            )
-        );
+        if (form && form.elements && form.elements[name]) {
+            return form.elements[name];
+        }
+
+        if (form) {
+            const el = form.querySelector(`[name="${CSS.escape(name)}"]`);
+            if (el) {
+                return el;
+            }
+        }
+
+        return document.getElementById(name);
     }
 
     function collectScenario() {
@@ -583,15 +618,9 @@
        --------------------------------------------------------- */
 
     function updateRangeDisplays() {
-        if (!form) {
-            return;
-        }
-
-        $$(
-            "input[type='range']",
-            form
-        ).forEach((input) => {
+        document.querySelectorAll("input[type='range']").forEach((input) => {
             const output =
+                document.getElementById(input.id + "Value") ||
                 document.querySelector(
                     `[data-range-output="${CSS.escape(
                         input.name
@@ -611,15 +640,18 @@
                     0
                 );
 
-            const suffix =
-                input.dataset.suffix ||
-                (
-                    input.name?.includes(
-                        "percentage"
-                    )
-                        ? "%"
-                        : ""
-                );
+            let suffix =
+                input.dataset.suffix || "";
+
+            if (!suffix) {
+                if (input.id.includes("Percentage") || input.id.includes("Performance") || input.id.includes("Attendance") || input.id.includes("Completion")) {
+                    suffix = "%";
+                } else if (input.id.includes("Hours") || input.id.includes("Time") || input.id.includes("Activity") || input.id.includes("Interaction")) {
+                    suffix = " h";
+                } else if (input.id.includes("Pressure") || input.id.includes("Quality") || input.id.includes("Stress") || input.id.includes("Anxiety") || input.id.includes("Mood") || input.id.includes("Management")) {
+                    suffix = " / 10";
+                }
+            }
 
             output.textContent =
                 `${value}${suffix}`;

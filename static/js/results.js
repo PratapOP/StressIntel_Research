@@ -155,6 +155,18 @@
             return payload.result;
         }
 
+        if (
+            payload.result &&
+            (payload.result.risk_level ||
+             payload.result.predicted_class ||
+             payload.result.probabilities)
+        ) {
+            return {
+                ...payload,
+                prediction: payload.result
+            };
+        }
+
         return payload;
     }
 
@@ -173,6 +185,7 @@
         return (
             normalizedResult.prediction ||
             normalizedResult.result?.prediction ||
+            (normalizedResult.result?.risk_level ? normalizedResult.result : null) ||
             normalizedResult
         );
     }
@@ -257,6 +270,14 @@
             ) ||
             document.getElementById(
                 "risk-level"
+            ) ||
+            document.getElementById(
+                "predictedClass"
+            );
+
+        const labelElement =
+            document.getElementById(
+                "riskLabel"
             );
 
         const descriptionElement =
@@ -265,6 +286,9 @@
             ) ||
             document.getElementById(
                 "risk-description"
+            ) ||
+            document.getElementById(
+                "riskInterpretation"
             );
 
         const confidenceElement =
@@ -273,6 +297,19 @@
             ) ||
             document.getElementById(
                 "confidence-value"
+            ) ||
+            document.getElementById(
+                "confidencePercentage"
+            );
+
+        const confidenceBar =
+            document.getElementById(
+                "confidenceBar"
+            );
+
+        const riskOrbit =
+            document.getElementById(
+                "riskOrbit"
             );
 
         const riskContainer =
@@ -302,8 +339,14 @@
             );
         }
 
+        if (labelElement) {
+            labelElement.textContent =
+                `${String(riskLevel).toUpperCase()} RISK`;
+        }
+
         if (descriptionElement) {
             descriptionElement.textContent =
+                prediction.interpretation ||
                 window.StressIntelRisk?.getRiskDescription?.(
                     riskLevel
                 ) ||
@@ -315,6 +358,21 @@
                 formatPercentage(
                     confidence
                 );
+        }
+
+        if (confidenceBar) {
+            const pct = Math.min(Math.max((confidence <= 1 ? confidence * 100 : confidence), 0), 100);
+            confidenceBar.style.width = `${pct.toFixed(1)}%`;
+        }
+
+        if (riskOrbit) {
+            riskOrbit.classList.remove(
+                "risk-low",
+                "risk-medium",
+                "risk-high",
+                "risk-unknown"
+            );
+            riskOrbit.classList.add(`risk-${normalizedRisk}`);
         }
 
         if (riskContainer) {
@@ -400,6 +458,9 @@
                 const directValue =
                     document.querySelector(
                         `[data-probability-value="${key}"]`
+                    ) ||
+                    document.getElementById(
+                        `${key}Probability`
                     );
 
                 if (directValue) {
@@ -410,6 +471,9 @@
                 const directFill =
                     document.querySelector(
                         `[data-probability-fill="${key}"]`
+                    ) ||
+                    document.getElementById(
+                        `${key}ProbabilityBar`
                     );
 
                 if (directFill) {
@@ -504,7 +568,7 @@
         );
 
         const entropyElements = $$(
-            "[data-entropy-value]"
+            "[data-entropy-value], #predictionEntropy"
         );
 
         entropyElements.forEach(
@@ -712,13 +776,13 @@
 
     function renderExplainability() {
         renderContributionList(
-            "[data-risk-drivers]",
+            "[data-risk-drivers], #riskDriversList",
             getDrivers(),
             "driver"
         );
 
         renderContributionList(
-            "[data-protective-factors]",
+            "[data-protective-factors], #protectiveFactorsList",
             getProtectiveFactors(),
             "protective"
         );
@@ -729,7 +793,7 @@
     function renderContributionTable() {
         const container =
             document.querySelector(
-                "[data-contribution-table]"
+                "[data-contribution-table], #contributionList"
             );
 
         if (!container) {
@@ -818,6 +882,33 @@
                     `;
                 })
                 .join("");
+    }
+
+    async function loadExplanationIfMissing() {
+        if (!assessment) return;
+        const currentDrivers = getDrivers();
+        if (Array.isArray(currentDrivers) && currentDrivers.length > 0) return;
+
+        try {
+            const prediction = getPrediction();
+            const response = await window.StressIntel?.API?.post?.(
+                "/analysis/explain",
+                {
+                    prediction,
+                    features: assessment
+                }
+            );
+
+            if (response?.success && response?.result) {
+                if (normalizedResult) {
+                    normalizedResult.explanation = response.result;
+                    window.StressIntelSession?.saveResult?.(normalizedResult);
+                    renderExplainability();
+                }
+            }
+        } catch (e) {
+            console.warn("Auto SHAP explain skipped or unavailable:", e);
+        }
     }
 
     /* ---------------------------------------------------------
@@ -1021,6 +1112,24 @@
                 }
             }
         );
+
+        const modelEl = document.getElementById("metadataModel");
+        if (modelEl) modelEl.textContent = model.model_type || prediction.model_type || "XGBoost";
+
+        const verEl = document.getElementById("metadataVersion");
+        if (verEl) verEl.textContent = model.model_version || prediction.model_version || "stressintel-xgb-v1.0.0";
+
+        const clsEl = document.getElementById("metadataClasses");
+        if (clsEl) {
+            const classes = model.classes || ["Low", "Medium", "High"];
+            clsEl.textContent = Array.isArray(classes) ? classes.join(", ") : String(classes);
+        }
+
+        const calEl = document.getElementById("metadataCalibration");
+        if (calEl) calEl.textContent = model.calibration?.method || "Platt Calibrated";
+
+        const hdrVerEl = document.getElementById("modelVersion");
+        if (hdrVerEl) hdrVerEl.textContent = model.model_version || prediction.model_version || "v1.0.0";
 
         const modelVersionElements = $$(
             "[data-model-version]"
@@ -1258,7 +1367,7 @@
 
     function initializeReportActions() {
         const reportButtons = $$(
-            "[data-generate-report], #generate-report"
+            "[data-generate-report], #generate-report, #generateReportButton"
         );
 
         reportButtons.forEach(
@@ -1279,6 +1388,14 @@
                 );
             }
         );
+
+        const newAssessmentBtn =
+            document.getElementById("newAssessmentButton");
+        if (newAssessmentBtn) {
+            newAssessmentBtn.addEventListener("click", () => {
+                window.location.href = "/assessment";
+            });
+        }
 
         const printButtons = $$(
             "[data-print-report], #print-report"
@@ -1472,6 +1589,8 @@
 
         initializeReportActions();
         initializeResultCleanup();
+
+        loadExplanationIfMissing();
 
         setTimeout(
             animateProbabilityBars,
