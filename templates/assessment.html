@@ -31,7 +31,7 @@
     >
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap"
         rel="stylesheet"
     >
 
@@ -48,6 +48,11 @@
     <link
         rel="stylesheet"
         href="{{ url_for('static', filename='css/responsive.css') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/enhanced.css') }}"
     >
 </head>
 
@@ -211,7 +216,7 @@
 
                         <div
                             class="progress-bar"
-                            id="progressBar"
+                            id="assessment-progress"
                             style="width: 20%;"
                         ></div>
 
@@ -264,7 +269,7 @@
                 =========================================== -->
 
                 <form
-                    id="assessmentForm"
+                    id="assessment-form"
                     class="assessment-form"
                     novalidate
                 >
@@ -1507,7 +1512,7 @@
                         <button
                             type="button"
                             class="button button-secondary"
-                            id="previousStepButton"
+                            id="previous-step"
                         >
                             ←
                             <span>
@@ -1526,7 +1531,7 @@
                         <button
                             type="button"
                             class="button button-primary"
-                            id="nextStepButton"
+                            id="next-step"
                         >
                             <span>
                                 Continue
@@ -1537,7 +1542,7 @@
                         <button
                             type="submit"
                             class="button button-primary button-submit"
-                            id="submitAssessmentButton"
+                            id="submit-assessment"
                         >
                             <span>
                                 Run Analysis
@@ -1557,7 +1562,7 @@
 
                     <div
                         class="form-alert"
-                        id="formAlert"
+                        id="assessment-alert"
                         role="alert"
                         aria-live="polite"
                         hidden
